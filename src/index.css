@@ -1,7 +1,28 @@
+/* Mon style */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Yusei+Magic&display=swap");
+
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("./assets/open_dyslexic/OpenDyslexic-Regular.otf") format("opentype");
+}
+
+.theme-base {
+  --color-mauve-omb: #b031d7;
+  --color-mauve-mid: #d66dee;
+  --color-mauve-clair: #d27eea;
+  --color-bleu-canard: #0e4555;
+  --color-blanc-mauve: #fefcff;
+  --gradient-mauve-clair: linear-gradient(to right, #ede1f6, #eaceff);
+}
+h1,
+h2 {
+  font-family: "Yusei Magic", sans-serif;
+}
+
+/* fin */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -28,6 +49,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-family: "Nunito", sans-serif;
 }
 
 h1 {
