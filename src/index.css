@@ -1,4 +1,3 @@
-/* Mon style */
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Yusei+Magic&display=swap");
 @import "tailwindcss";
 
@@ -7,9 +6,6 @@
   src: url("./assets/open_dyslexic/OpenDyslexic-Regular.otf") format("opentype");
 }
 
-/* .grayscale {
-  filter: grayscale(100%);
-} */
 .high-contrast {
   background-color: #000 !important;
   color: #fff9f9 !important;
@@ -30,6 +26,12 @@
   outline-width: 2px;
   outline-style: solid;
 }
+.dys-font * {
+  font-family: "OpenDyslexic", sans-serif !important;
+  /* letter-spacing: 1.3px !important; */
+  /* line-height: 1.8 !important; */
+}
+
 h1,
 h2 {
   font-family: "Yusei Magic", sans-serif;
@@ -55,6 +57,7 @@ h2 {
   --color-blanc-mauve: #fefcff;
   --color-noir: #1f1b24;
 
+  /* Préparation des dégradés :  */
   /* className="bg-linear-[160deg] from-[#ede1f6] to-[#eaceff]" */
   /* className="bg-linear-[160deg] from-[#ede1f6] via-[#C3A3FF] to-[#8964C2]" */
 }
