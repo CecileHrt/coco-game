@@ -1,37 +1,62 @@
 /* Mon style */
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Yusei+Magic&display=swap");
+@import "tailwindcss";
 
 @font-face {
   font-family: "OpenDyslexic";
   src: url("./assets/open_dyslexic/OpenDyslexic-Regular.otf") format("opentype");
 }
 
-.theme-base {
-  --color-mauve-omb: #b031d7;
-  --color-mauve-mid: #d66dee;
-  --color-mauve-clair: #d27eea;
-  --color-bleu-canard: #0e4555;
-  --color-blanc-mauve: #fefcff;
-  --gradient-mauve-clair: linear-gradient(to right, #ede1f6, #eaceff);
+/* .grayscale {
+  filter: grayscale(100%);
+} */
+.high-contrast {
+  background-color: #000 !important;
+  color: #fff9f9 !important;
+}
+.high-contrast p,
+.high-contrast h1,
+.high-contrast h2,
+.high-contrast h3,
+.high-contrast h4,
+.high-contrast h5,
+.high-contrast h6 {
+  padding: 5px !important;
+}
+.high-contrast * {
+  background-color: transparent !important;
+  color: #fefcff !important;
+  outline-color: yellow;
+  outline-width: 2px;
+  outline-style: solid;
 }
 h1,
 h2 {
   font-family: "Yusei Magic", sans-serif;
 }
 
-/* fin */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: #fefcff;
   background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --color-mauve-omb: #b031d7;
+  --color-mauve-mid: #d66dee;
+  --color-mauve-clair: #d27eea;
+  --color-bleu-canard: #0e4555;
+  --color-blanc-mauve: #fefcff;
+  --color-noir: #1f1b24;
+
+  /* className="bg-linear-[160deg] from-[#ede1f6] to-[#eaceff]" */
+  /* className="bg-linear-[160deg] from-[#ede1f6] via-[#C3A3FF] to-[#8964C2]" */
 }
 
 a {
@@ -50,6 +75,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   font-family: "Nunito", sans-serif;
+  color: #1f1b24;
 }
 
 h1 {
