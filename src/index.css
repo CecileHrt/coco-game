@@ -19,6 +19,7 @@
 .high-contrast h6 {
   padding: 5px !important;
 }
+
 .high-contrast * {
   background-color: transparent !important;
   color: #fefcff !important;
@@ -26,10 +27,38 @@
   outline-width: 2px;
   outline-style: solid;
 }
+.high-contrast i path {
+  outline-width: 0px !important;
+}
 .dys-font * {
   font-family: "OpenDyslexic", sans-serif !important;
   /* letter-spacing: 1.3px !important; */
   /* line-height: 1.8 !important; */
+}
+
+.btn-carre-jaune {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #ffe455, #fedc14);
+  box-shadow: 0 4px 0 #ffac17;
+
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+/* .btn-carre-jaune:disabled,
+.btn-carre-jaune.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+} */
+.btn-carre-jaune i {
+  font-size: 24px;
+  color: #1f1b24;
 }
 
 h1,
@@ -97,9 +126,7 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
-}
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;

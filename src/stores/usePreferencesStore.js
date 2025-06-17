@@ -44,6 +44,21 @@ const usePreferencesStore = create((set) => ({
     }
     set({ fontType: savedFontType });
   },
+
+  // === SYNTHESE ET RECONNAISSANCE VOCALE ===
+  voiceAssistance: false,
+  setVoiceAssistance: (enabled) => {
+    set({ voiceAssistance: enabled });
+    localStorage.setItem("voiceAssistance", JSON.stringify(enabled));
+  },
+
+  initVoiceSettings: () => {
+    const enabled =
+      JSON.parse(localStorage.getItem("voiceAssistance")) || false;
+    set({
+      voiceAssistance: enabled,
+    });
+  },
 }));
 
 export default usePreferencesStore;
