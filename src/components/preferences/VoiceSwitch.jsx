@@ -1,4 +1,4 @@
-import usePreferencesStore from "../../stores/usePreferencesStore";
+import usePreferencesStore from "../../stores/usePreferencesStore.js";
 
 export default function VoiceSwitch() {
   const voiceAssistance = usePreferencesStore((state) => state.voiceAssistance);

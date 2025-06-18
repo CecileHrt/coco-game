@@ -1,4 +1,4 @@
-import usePreferencesStore from "../../stores/usePreferencesStore";
+import usePreferencesStore from "../../stores/usePreferencesStore.js";
 
 function HighContrastSwitch() {
   const theme = usePreferencesStore((state) => state.theme);

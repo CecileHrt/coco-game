@@ -1,4 +1,4 @@
-import usePreferencesStore from "../../stores/usePreferencesStore";
+import usePreferencesStore from "../../stores/usePreferencesStore.js";
 
 function FontTypeSwitch() {
   const fontType = usePreferencesStore((state) => state.fontType);

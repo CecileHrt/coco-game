@@ -1,4 +1,4 @@
-import usePreferencesStore from "../stores/usePreferencesStore";
+import usePreferencesStore from "../stores/usePreferencesStore.js";
 
 export function speak(text) {
   const voiceAssistance = usePreferencesStore.getState().voiceAssistance;

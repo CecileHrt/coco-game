@@ -1,4 +1,4 @@
-import usePreferencesStore from "../stores/usePreferencesStore";
+import usePreferencesStore from "../stores/usePreferencesStore.js";
 
 export function startRecognition(callback) {
   const voiceAssistance = usePreferencesStore.getState().voiceAssistance;
