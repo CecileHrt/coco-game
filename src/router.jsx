@@ -12,7 +12,8 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <CocoConcept />, // <UserNotConnected>
+        element: <Preferences />,
+        //element: <CocoConcept />, // <UserNotConnected>
       },
       {
         path: "/preferences",

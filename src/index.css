@@ -141,6 +141,7 @@ h3 {
   letter-spacing: 0.5px;
   margin-bottom: 8px;
   cursor: pointer;
+  transition: all 0.5s ease-in-out;
 }
 .btn-valider {
   color: #fefcff;
