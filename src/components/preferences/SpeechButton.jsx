@@ -21,7 +21,7 @@ export default function SpeechButton({ onResult = null, className = "" }) {
     });
   };
 
-  if (!voiceAssistance) return <button className="h-10 invisible" />;
+  if (!voiceAssistance) return <button className="h-8 invisible" />;
 
   return (
     <button

@@ -6,7 +6,7 @@ import { FaVolumeHigh } from "react-icons/fa6";
 export default function SynthesisButton({ text, className = "" }) {
   const voiceAssistance = usePreferencesStore((state) => state.voiceAssistance);
 
-  if (!voiceAssistance) return <button className="h-10 invisible" />;
+  if (!voiceAssistance) return <button className="h-8 invisible" />;
 
   return (
     <button

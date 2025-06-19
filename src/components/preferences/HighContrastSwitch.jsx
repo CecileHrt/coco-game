@@ -17,31 +17,17 @@ function HighContrastSwitch() {
         onChange={toggleTheme}
       />
       <div
-        className="group peer relative w-12 h-6 rounded-full duration-300
-
-          /* Ring et couleurs par défaut */
-          ring-2 ring-[var(--color-mauve-omb)] bg-transparent
+        className="group peer relative w-9 h-5 rounded-full duration-300 bg-[#EDE1F6]
 
           /* Pseudo-élément (le rond) */
-          after:absolute after:top-1 after:left-1 after:h-4 after:w-4 
+          after:absolute after:top-[1px] after:left-[1px] after:h-[18px] after:w-[18px]
           after:rounded-full after:flex after:justify-center after:items-center 
-          after:bg-[var(--color-mauve-omb)] after:duration-300
+          after:duration-300 after:bg-white after:transition-transform 
 
           /* Interactions */
           peer-hover:after:scale-95
-          peer-checked:ring-[#1DF264]
-          peer-checked:after:translate-x-6
-          peer-checked:after:bg-[#1DF264]
-
-          /* Mode contrasté */
-          high-contrast:ring-yellow-400
-          high-contrast:bg-black
-          high-contrast:peer-checked:ring-green-400
-          high-contrast:after:left-auto
-          high-contrast:peer-checked:after:right-1
-          high-contrast:peer-checked:after:translate-x-0
-          high-contrast:after:bg-yellow-300
-          high-contrast:peer-checked:after:bg-green-300 "
+          peer-checked:after:translate-x-4
+          peer-checked:bg-[#C550E5]"
       ></div>
     </label>
   );
