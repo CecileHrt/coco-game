@@ -6,6 +6,9 @@
   src: url("./assets/open_dyslexic/OpenDyslexic-Regular.otf") format("opentype");
 }
 
+/* - -  Accessibilité - - */
+/* - -  Accessibilité - - */
+/* Contrast */
 .high-contrast {
   background-color: #000 !important;
   color: #fff9f9 !important;
@@ -35,12 +38,128 @@
   outline-width: 0px !important;
 }
 
+/* Font Dys */
 .dys-font * {
   font-family: "OpenDyslexic", sans-serif !important;
   /* letter-spacing: 1.3px !important; */
   /* line-height: 1.8 !important; */
 }
+/* - - Elements de bases - - */
+/* - - Elements de bases - - */
+:root {
+  font-family: "Nunito", sans-serif;
+  line-height: 1.5;
 
+  color-scheme: light dark;
+  color: #fefcff;
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --color-mauve-omb: #b031d7;
+  --color-mauve-mid: #d66dee;
+  --color-mauve-clair: #d27eea;
+  --color-mauve-pastel: #ede1f6;
+  --color-bleu-canard: #0e4555;
+  --color-blanc-mauve: #fefcff;
+  --color-noir: #1f1b24;
+
+  /* Préparation des dégradés :  */
+  /* className="bg-linear-[160deg] from-[#ede1f6] to-[#eaceff]" */
+  /* className="bg-linear-[160deg] from-[#ede1f6] via-[#C3A3FF] to-[#8964C2]" */
+}
+
+body {
+  margin: 0;
+  /* display: flex; */
+  /* place-items: center; */
+  /* min-width: 320px; */
+  /* min-height: 100vh; */
+  font-family: "Nunito", sans-serif;
+  color: #1f1b24;
+}
+
+/* - - Titres - -  */
+/* - - Titres - -  */
+h1 {
+  /* font-size: 3.2em; */
+  text-align: center;
+  padding: 8px 0 24px;
+  line-height: 1.1;
+}
+h1,
+h2 {
+  font-family: "Yusei Magic", sans-serif;
+}
+.box-h2 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.box-h2 i {
+  font-size: 20px;
+}
+.box-h2 h2 {
+  margin: 0 8px;
+  font-size: 20px;
+  font-weight: 600;
+}
+.box-h2 figure {
+  flex: 1;
+  margin-top: 12px;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+}
+h3 {
+  font-family: "Yusei Magic", sans-serif;
+  color: #b031d7;
+}
+
+/*  - - Navigations - -  */
+/*  - - Navigations - -  */
+
+/* Nav Pdv  */
+.logotype {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.logotype img {
+  object-fit: cover;
+  height: 100%;
+  margin-right: 12px;
+}
+.logotype strong {
+  font-family: "Yusei Magic", sans-serif;
+  color: #b031d7;
+  font-size: 26px;
+}
+
+/*  - - box bg - -  */
+/*  - - box bg - -  */
+.box-white-transparent {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  /* padding: 12px 8px; */
+}
+.box-white-shadow {
+  background-color: #ffff;
+  border-radius: 8px;
+  /* padding: 16px; */
+  box-shadow: 0px 3px 0px #b92ecd;
+}
+
+/*  - - Boutons - -  */
+/*  - - Boutons - -  */
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Btn carré */
 .btn-carre-jaune {
   width: 30px;
   height: 30px;
@@ -64,70 +183,8 @@
   font-size: 20px;
   color: #1f1b24;
 }
-.box-h2 {
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-}
-.box-h2 i {
-  font-size: 20px;
-}
-.box-h2 h2 {
-  margin: 0 8px;
-  font-size: 20px;
-  font-weight: 600;
-}
-.box-h2 figure {
-  flex: 1;
-  margin-top: 12px;
-  height: 3px;
-  border-radius: 3px 3px 0 0;
-}
 
-.box-white-transparent {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  /* padding: 12px 8px; */
-}
-.box-white-shadow {
-  background-color: #ffff;
-  border-radius: 8px;
-  /* padding: 16px; */
-  box-shadow: 0px 3px 0px #b92ecd;
-}
-
-h1,
-h2 {
-  font-family: "Yusei Magic", sans-serif;
-}
-h3 {
-  font-weight: 600;
-}
-
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-
-  color-scheme: light dark;
-  color: #fefcff;
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  --color-mauve-omb: #b031d7;
-  --color-mauve-mid: #d66dee;
-  --color-mauve-clair: #d27eea;
-  --color-bleu-canard: #0e4555;
-  --color-blanc-mauve: #fefcff;
-  --color-noir: #1f1b24;
-
-  /* Préparation des dégradés :  */
-  /* className="bg-linear-[160deg] from-[#ede1f6] to-[#eaceff]" */
-  /* className="bg-linear-[160deg] from-[#ede1f6] via-[#C3A3FF] to-[#8964C2]" */
-}
+/* Annuler - Valider modification */
 .btn-valider,
 .btn-annuler {
   display: flex;
@@ -156,7 +213,6 @@ h3 {
   font-size: 20px;
   margin-right: 8px;
 }
-
 .btn-valider:hover {
   background-color: #fefcff;
   color: #b031d7;
@@ -175,23 +231,6 @@ a:hover {
   color: #535bf2;
 } */
 
-body {
-  margin: 0;
-  /* display: flex; */
-  /* place-items: center; */
-  /* min-width: 320px; */
-  /* min-height: 100vh; */
-  font-family: "Nunito", sans-serif;
-  color: #1f1b24;
-}
-
-h1 {
-  /* font-size: 3.2em; */
-  text-align: center;
-  padding: 8px 0 24px;
-  line-height: 1.1;
-}
-
 /* button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -203,13 +242,7 @@ h1 {
   cursor: pointer;
   transition: border-color 0.25s;
 } */
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -220,4 +253,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   } */
-}
+/* } */

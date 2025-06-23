@@ -38,12 +38,12 @@ export default function Preferences() {
               </div>
               <div className="flex justify-between ">
                 <p className="text-xs text-gray-600 italic max-w-[90%] flex-1 md:text-sm">
-                  Les fonctions de synthèse et de reconnaissance vocale sont
+                  Les fonctions de synthèse et de reconnaissance vocales sont
                   conseillées pour favoriser l’autonomie des enfants ne pouvant
                   lire ou écrire seul.
                 </p>
                 <SynthesisButton
-                  text="Les fonctions de synthèse et de reconnaissance vocale sont
+                  text="Les fonctions de synthèse et de reconnaissance vocales sont
                   conseillées pour favoriser l’autonomie des enfants ne pouvant
                   lire ou écrire seul."
                 />
@@ -73,10 +73,10 @@ export default function Preferences() {
               </div>
               <div className="flex justify-between ">
                 <p className="text-xs text-gray-600 italic max-w-[90%] flex-1 md:text-sm">
-                  Remplacer les polices actuelle par une police d’écriture
-                  adaptée aux troubles dys.
+                  Remplacer les polices actuelles par une police d’écriture
+                  adaptée aux troubles Dys.
                 </p>
-                <SynthesisButton text="Remplacer les polices actuelle par une police d’écriture adaptée aux troubles dys. " />
+                <SynthesisButton text="Remplacer les polices actuelles par une police d’écriture adaptée aux troubles dys. " />
               </div>
             </article>
 
@@ -109,15 +109,15 @@ export default function Preferences() {
             {/* Durée Max Journalière */}
             <article>
               <div className="flex items-center justify-between space-x-4 mb-1">
-                <h3>Durée maximale journalière :</h3>
+                <h3>Durée maximale journalière&nbsp;:</h3>
                 <p className="font-[800]"> 30min</p>
               </div>
               <div className="flex justify-between ">
                 <p className="text-xs text-gray-600 italic max-w-[90%] flex-1 md:text-sm">
-                  Le temps d’écran est correspond à l’énergie quotidienne
+                  Le temps d’écran renseigné correspond à l’énergie quotidienne
                   attribuée au compagnon.
                 </p>
-                <SynthesisButton text="Le temps d’écran est correspond à l’énergie journalière attribuée au compagnon. " />
+                <SynthesisButton text="Le temps d’écran renseigné correspond à l’énergie journalière attribuée au compagnon. " />
               </div>
             </article>
 
@@ -130,9 +130,9 @@ export default function Preferences() {
               <div className="flex justify-between ">
                 <p className="text-xs text-gray-600 italic max-w-[90%] flex-1 md:text-sm">
                   Heures où l’application est accessible pour l’enfant. En
-                  dehors des heures, le mode de jeu ne sera pas accessible.
+                  dehors des heures, seul le mode de jeu ne sera pas disponible.
                 </p>
-                <SynthesisButton text="Heures où l’application est accessible pour l’enfant. En dehors des heures, le mode de jeu ne sera pas accessible." />
+                <SynthesisButton text="Heures où l’application est accessible pour l’enfant. En dehors des heures, seul le mode de jeu ne sera pas disponible." />
               </div>
             </article>
           </section>
@@ -150,15 +150,16 @@ export default function Preferences() {
             {/* Encouragement de fréquence */}
             <article>
               <div className="flex items-center justify-between space-x-4 mb-1">
-                <h3>Encouragement de fréquence :</h3>
+                <h3>Encouragement de fréquence&nbsp;:</h3>
                 <SwitchModel />
               </div>
               <div className="flex justify-between ">
                 <p className="text-xs text-gray-600 italic max-w-[90%] flex-1 md:text-sm">
                   Messages d’encouragement ou informatif à l’attention de
-                  l’enfant, afin de jouer ou de s’occuper du compagnon.
+                  l’enfant, afin de l'inviter à jouer ou à s’occuper du
+                  compagnon.
                 </p>
-                <SynthesisButton text="Messages d’encouragement ou informatif à l’attention de l’enfant, afin de jouer ou de s’occuper du compagnon." />
+                <SynthesisButton text="Messages d’encouragement ou informatif à l’attention de l’enfant, afin de l'inviter à jouer ou à s’occuper du compagnon." />
               </div>
             </article>
 
