@@ -18,7 +18,7 @@ function AdaptativeMode({ children }) {
     window.speechSynthesis.getVoices();
   }, []);
 
-  return <main>{children}</main>;
+  return <>{children}</>;
 }
 
 export default AdaptativeMode;

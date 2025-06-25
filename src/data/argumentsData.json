@@ -1,0 +1,54 @@
+{
+  "enfants": [
+    {
+      "titre": "J’apprends sans pression",
+      "texte": "Un apprentissage doux, guidé par le jeu et la curiosité."
+    },
+    {
+      "titre": "Un compagnon rien qu’à moi",
+      "texte": "Une relation unique, renforçant son sentiment d’attachement et de responsabilité."
+    },
+    {
+      "titre": "J’exprime mes émotions",
+      "texte": "Permet de reconnaître, nommer et réguler ses émotions avec le compagnon."
+    },
+    {
+      "titre": "Je gère mon porte-monnaie",
+      "texte": "Gagner, économiser et dépenser une monnaie virtuelle, par plaisir ou par besoin."
+    },
+    {
+      "titre": "Des jeux adaptés à mon âge",
+      "texte": "Thématiques et niveaux adaptés à son âge, renforçant la confiance en soi."
+    },
+    {
+      "titre": "Je peux défier les grands !",
+      "texte": "Des moments à partager (défis, lecture, mini-jeu à deux…) renforçant la complicité familiale."
+    }
+  ],
+  "adultes": [
+    {
+      "titre": "Un usage 100 % positif",
+      "texte": "Pas de publicités, pas d’achats intégrés. Une bulle éducative, et c’est tout."
+    },
+    {
+      "titre": "Une liberté qui a du sens",
+      "texte": "Un outil d’apprentissage intellectuel et émotionnel que vous personnalisez."
+    },
+    {
+      "titre": "Du temps d’écran intelligent",
+      "texte": "L’enfant apprend à réguler son usage, dans un cadre bienveillant et quantifié par vos soins."
+    },
+    {
+      "titre": "Suivi simple et transparent",
+      "texte": "Accédez aux activités, jauges et évolutions de votre enfant en un coup d’œil."
+    },
+    {
+      "titre": "Des contenus adaptés",
+      "texte": "Activités, interactions et responsabilités grandissent avec lui, pour rester pertinents."
+    },
+    {
+      "titre": "Devenez acteur du projet",
+      "texte": "Votre implication compte ! Ensemble, créons une appli utile, bienveillante, co-construite avec ceux qui en ont besoin."
+    }
+  ]
+}

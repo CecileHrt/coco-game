@@ -12,14 +12,14 @@ import { FaEgg } from "react-icons/fa6";
 import { GiBirdHouse } from "react-icons/gi";
 
 export default function NavBarPdv() {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
   return (
-    <header className="relative flex items-center justify-between p-2 bg-[var(--color-blanc-mauve)]">
+    <header className="relative flex items-center justify-between p-2 bg-[var(--color-blanc-mauve)] lg:px-6">
       <div className="logotype">
         <img
           src="../../public/logo-coco.webp"
@@ -35,8 +35,8 @@ export default function NavBarPdv() {
           <ul className="flex flex-col p-4 box-white-shadow space-y-2 mx-auto max-w-[480px]  ">
             {user && (
               <NavLink
-                className={`hover:font-[600] hover:text-[var(--color-mauve-omb)] bg-[var(--color-mauve-pastel)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-                to="/coco-concept"
+                className={`hover:font-[600] hover:text-[var(--color-mauve-omb)] bg-[var(--color-mauve-pastel)]/70 transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
+                to="/choix-coco"
               >
                 <li className="flex items-center">
                   <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">

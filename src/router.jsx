@@ -12,16 +12,40 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Preferences />, // a supprimer
-        //element: <CocoConcept />, // <UserNotConnected>
+        element: <CocoConcept />, // <UserNotConnected>
       },
       {
         path: "/preferences",
         element: <Preferences />, // <UserConnected>
       },
+
       {
-        path: "/coco-concept", // a supprimer
-        element: <Preferences />,
+        path: "/choix-coco",
+        element: <Preferences />, // a modifier
+      },
+      {
+        path: "/coco-concept",
+        element: <CocoConcept />, // a modifier
+      },
+      {
+        path: "/choix-profil",
+        element: <Preferences />, // a modifier
+      },
+      {
+        path: "/logout",
+        element: <Preferences />, // a modifier
+      },
+      {
+        path: "/login",
+        element: <Preferences />, // a modifier
+      },
+      {
+        path: "/mentions-legales",
+        element: <Preferences />, // a modifier
+      },
+      {
+        path: "/politique-confidentialite",
+        element: <Preferences />, // a modifier
       },
     ],
   },

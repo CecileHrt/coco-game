@@ -18,7 +18,9 @@ export default function Preferences() {
       <NavBarPdv />
       <main className="bg-linear-[160deg] p-2 from-[#FFD8FA] via-[#C3A3FF] to-[#8964C2] w-full ">
         <BackEdit />
-        <h1 className="text-3xl md:text-4xl font-bold">Préférences</h1>
+        <h1 className="text-3xl text-center md:text-4xl font-bold">
+          Préférences
+        </h1>
         <div className="box-white-transparent md:max-w-3xl md:mx-auto p-4 md:p-12 space-y-4 ">
           {/* PEDAGOGIE & ACCESSIBILITE */}
           <section className="space-y-4 mb-4 md:mb-6">
