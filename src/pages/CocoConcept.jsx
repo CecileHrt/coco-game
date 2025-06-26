@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NavBarPdv from "../components/NavBarPdv";
 import { NavLink } from "react-router-dom";
-import { FaHeart, FaStar } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { FaEgg } from "react-icons/fa6";
 import useConceptStore from "../stores/useConceptStore";
 import ArgumentType from "../components/ArgumentType";
@@ -13,13 +13,14 @@ export default function CocoConcept() {
   const ListeAdulte = argumentsList.filter((arg) => arg.cible === "adultes");
   console.log("liste adulte", ListeAdulte);
   console.log("liste enf", ListeEnfant);
+
   return (
     <>
       <NavBarPdv />
       <main>
         <header
           className="
-         bg-[url(../../public/a-propos/bg-header.webp)] p-8 
+         bg-[url(/a-propos/bg-header.webp)] p-8 
          md:bg-repeat lg:p-16"
         >
           <div
@@ -41,8 +42,8 @@ export default function CocoConcept() {
                 expérience éducative à la fois douce et engageante.
               </p>
               <img
-                // src="../../public/a-propos/pere-et-fille-sur-la-tablette.webp"
-                src="../../public/a-propos/pt-pere-et-fille-a-l-aide-de-la-tablette.jpg"
+                // src="/a-propos/pere-et-fille-sur-la-tablette.webp"
+                src="/a-propos/pt-pere-et-fille-a-l-aide-de-la-tablette.jpg"
                 alt="Père et fille,jouent ensemble sur une tablette"
                 title="Père et fille,jouent ensemble sur une tablette"
                 className="rounded-sm mx-auto max-h-[300px] object-cover mt-8 mb-4 sm:hidden"
@@ -62,7 +63,7 @@ export default function CocoConcept() {
               </NavLink>
             </div>
             <img
-              src="../../public/a-propos/gd-pere-et-fille-tablette.jpg"
+              src="/a-propos/gd-pere-et-fille-tablette.jpg"
               alt="Père et fille,jouent ensemble sur une tablette"
               title="Père et fille,jouent ensemble sur une tablette"
               className="rounded-lg object-cover w-[270px] max-sm:hidden "
