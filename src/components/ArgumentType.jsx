@@ -19,9 +19,9 @@ export default function ArgumentType({ titre, texte }) {
   return (
     <>
       <div
-        onMouseEnter={ouverture}
+        // onMouseEnter={ouverture}
         onClick={ouverture}
-        className="arguments-pdv transition-all duration-300 ease-in-out cursor-pointer mb-4 md:mb-6"
+        className="arguments-pdv transition-all duration-300 ease-in-out cursor-pointer mb-2 md:mb-6 hover:bg-[var(--color-mauve-pastel)] p-1 rounded"
       >
         <div className="flex space-x-2 items-center">
           <i

@@ -11,13 +11,13 @@ export default function CocoConcept() {
 
   const ListeEnfant = argumentsList.filter((arg) => arg.cible === "enfants");
   const ListeAdulte = argumentsList.filter((arg) => arg.cible === "adultes");
-  console.log("liste adulte", ListeAdulte);
-  console.log("liste enf", ListeEnfant);
+  // console.log("liste adulte", ListeAdulte);  console.log("liste enf", ListeEnfant);
 
   return (
     <>
       <NavBarPdv />
       <main>
+        {/* HEADER */}
         <header
           className="
          bg-[url(/a-propos/bg-header.webp)] p-8 
@@ -70,8 +70,8 @@ export default function CocoConcept() {
             />
           </div>
         </header>
-        {/* section 1 - présentation */}
-        <section className="bg-linear-[160deg] from-[#ede1f6] to-[#eaceff] p-8  lg:p-16">
+        {/* SECTION 1 - présentation */}
+        <section className="bg-linear-[160deg] from-[#ede1f6] to-[#eaceff] p-4  lg:p-16">
           <div className="center">
             {/* xl:max-w-[1300px] xl:mx-auto  */}
             <div className="flex align-baseline space-x-4 mb-8">
@@ -119,11 +119,12 @@ export default function CocoConcept() {
             </article>
           </div>
         </section>
-        {/* section 2 - Interface */}
-        <section className="bg-linear-[160deg] from-[#ede1f6] to-[#eaceff] p-8  lg:p-16">
+        {/* SECTION 2 - Interface */}
+        <section className="bg-[var(--color-blanc-mauve)] py-4 pl-4 lg:p-16">
           <div className="center">
             {/* xl:max-w-[1300px] xl:mx-auto  */}
-            <div className="flex align-baseline space-x-4 mb-8">
+            {/* TITRE */}
+            <div className="flex align-baseline space-x-4 mb-12 pr-4">
               <i className="text-[var(--color-jaune)] mt-1 self-baseline text-2xl md:text-3xl xl:text-4xl ">
                 <FaEgg />
               </i>
@@ -140,8 +141,57 @@ export default function CocoConcept() {
                 ></figure>
               </div>
             </div>
-            <article className="sm:w-[70%] mx-auto">
-              <div className="mb-8">
+            {/* INTERFACE */}
+            <article className="relative pb-12  ml-auto w-[80%] xl:w-[80%] h-[370px] lg:h-[700px]">
+              <div className="absolute w-[80%] rounded-2xl right-0 bg-[url(/a-propos/bg-header.webp)] py-6 pl-6 md:bg-repeat lg:py-16 lg:pl-16">
+                <div className="flex justify-evenly h-[270px] space-x-2 hidden-x overflow-x-scroll lg:h-[450px]">
+                  <img
+                    src="../../public/a-propos/img-interface/compagnon-choix.jpg"
+                    alt=""
+                    className="rounded-sm shadow-sm"
+                  />
+                  <img
+                    src="../../public/a-propos/img-interface/espace-compagnon.jpg"
+                    alt=""
+                    className="rounded-sm shadow-sm"
+                  />
+                  <img
+                    src="../../public/a-propos/img-interface/boutique.jpg"
+                    alt=""
+                    className="rounded-sm shadow-sm"
+                  />
+                  <img
+                    src="../../public/a-propos/img-interface/inventaire.jpg"
+                    alt=""
+                    className="rounded-sm shadow-sm"
+                  />
+                  <img
+                    src="../../public/a-propos/img-interface/choix-mini-jeu.jpg"
+                    alt=""
+                    className="rounded-sm shadow-sm"
+                  />
+                  <img
+                    src="../../public/a-propos/img-interface/tableau-de-bord.jpg"
+                    alt=""
+                    className="rounded-sm shadow-sm"
+                  />
+                  <img
+                    src="../../public/a-propos/img-interface/preferences.jpg"
+                    alt=""
+                    className="rounded-sm shadow-sm"
+                  />
+                </div>
+                <img
+                  src="/a-propos/img-interface/gd-oeufs.png"
+                  className="absolute bottom-[-15px] left-[-15px] w-[90px] lg:w-[250px] lg:bottom-[-30px] lg:left-[-65px]"
+                  alt="illustration des oeufs des compagnons dispobibles dans l'application"
+                />
+              </div>
+            </article>
+
+            {/* ENFANT */}
+            <article className=" pb-12 sm:w-[70%] mx-auto pr-4 lg:justify-evenly lg:flex ">
+              <div className="pr-4 mb-4 ">
                 <h3 className="text-xl text-[var(--color-mauve-omb)] mb-6 md:text-2xl xl:text-3xl lg:mb-8">
                   Avantages pour les enfants&nbsp;:
                 </h3>
@@ -150,10 +200,24 @@ export default function CocoConcept() {
                   <ArgumentType key={index} {...arg} />
                 ))}
               </div>
-              {/* <img src="" alt="" /> */}
+              <img
+                src="/a-propos/petite-fille-a-la-campagne-tient-un-chiot-sur-ses-bras.jpg"
+                className="rounded shadow-sm lg:w-2/5 object-cover max-h-[400px]"
+                alt="Petite fille à la campagne avec un chien dans les bras avec attention et délicatesse."
+                title="Petite fille avec un chien dans les bras"
+              />
             </article>
-            <article className="sm:w-[70%] mx-auto">
-              <div>
+            {/* ADULTE */}
+            <article className=" pb-12 sm:w-[70%] mx-auto pr-4 lg:justify-evenly lg:flex  flex flex-col-reverse  lg:flex-row ">
+              {/* lg:items-center */}
+              <img
+                src="/a-propos/vue-laterale-femme-et-fille-a-la-maison-sur-la-tablette.jpg"
+                alt="mere qui accompagne sa fille sur la tablette"
+                // className="rounded shadow-sm lg:w-2/5 object-cover object-right max-h-[400px] "
+                className="rounded shadow-sm lg:w-2/5 object-cover object-right max-h-[400px]"
+                title="Mère qui accompagne sa fille sur la tablette"
+              />
+              <div className="pl-4 mb-4">
                 <h3 className="text-xl text-[var(--color-mauve-omb)] mb-6 md:text-2xl xl:text-3xl lg:mb-8">
                   Avantages pour les parents&nbsp;:
                 </h3>
@@ -162,7 +226,6 @@ export default function CocoConcept() {
                   <ArgumentType key={index} {...arg} />
                 ))}
               </div>
-              {/* <img src="" alt="" /> */}
             </article>
           </div>
         </section>
