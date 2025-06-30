@@ -59,6 +59,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  --font-yusei: "Yusei Magic", sans-serif;
+
   --color-mauve-omb: #b031d7;
   --color-mauve-mid: #d66dee;
   --color-mauve-clair: #d27eea;
@@ -71,6 +73,7 @@
   /* Préparation des dégradés :  */
   /* className="bg-linear-[160deg] from-[#ede1f6] to-[#eaceff]" */
   /* className="bg-linear-[160deg] from-[#ede1f6] via-[#C3A3FF] to-[#8964C2]" */
+  /* className="bg-linear-[160deg] from-[#FFD8FA] via-[#C3A3FF] to-[#8964C2]"  */
 }
 
 body {
@@ -120,10 +123,6 @@ h2 {
   height: 3px;
   border-radius: 3px 3px 0 0;
 }
-h3 {
-  font-family: "Yusei Magic", sans-serif;
-  color: #b031d7;
-}
 
 /*  - - Navigations - -  */
 /*  - - Navigations - -  */
@@ -157,6 +156,32 @@ h3 {
   border-radius: 8px;
   /* padding: 16px; */
   box-shadow: 0px 3px 0px #b92ecd;
+}
+
+/* scroll bar en hover  */
+.scrollbar-hide {
+  overflow-x: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.scrollbar-hide:-webkit-scrollbar {
+  display: none;
+  height: 6px;
+}
+
+.scrollbar-hide:hover {
+  scrollbar-width: thin;
+}
+
+.scrollbar-hide:hover::-webkit-scrollbar {
+  display: block;
+  height: 6px;
+}
+
+.scrollbar-hidehover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
 }
 
 /*  - - Boutons - -  */
@@ -233,12 +258,12 @@ button:focus-visible {
 .cta {
   display: block;
   text-align: center;
-  padding: 3px 7px;
+  /* padding: 3px 7px 6px; */
+  /* margin: 10px 0; */
   border: solid 1px;
   border-radius: 5px;
   font-family: "Yusei Magic", sans-serif;
   letter-spacing: 0.5px;
-  margin: 8px 0;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
 }
