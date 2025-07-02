@@ -258,8 +258,6 @@ button:focus-visible {
 .cta {
   display: block;
   text-align: center;
-  /* padding: 3px 7px 6px; */
-  /* margin: 10px 0; */
   border: solid 1px;
   border-radius: 5px;
   font-family: "Yusei Magic", sans-serif;

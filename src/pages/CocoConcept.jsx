@@ -4,9 +4,10 @@ import { NavLink } from "react-router-dom";
 import { FaHeart, FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { FaEgg } from "react-icons/fa6";
 import useConceptStore from "../stores/useConceptStore";
-import ArgumentType from "../components/ArgumentType";
-import Carousel from "../components/Carousel";
-import Avis from "../components/Avis";
+import ArgumentType from "../components/cocoConcept/ArgumentType";
+import Carousel from "../components/cocoConcept/Carousel";
+import AvisType from "../components/cocoConcept/AvisType";
+import AvisForm from "../forms/AvisForm";
 
 export default function CocoConcept() {
   const argumentsList = useConceptStore((state) => state.argumentsList);
@@ -413,7 +414,7 @@ export default function CocoConcept() {
           </div>
           <div className="flex flex-wrap justify-evenly max-sm:flex-col">
             {PlusAvis.map((item) => (
-              <Avis key={item.id} {...item} />
+              <AvisType key={item.id} {...item} />
             ))}
             <button
               onClick={AfficherMasquer}
@@ -445,6 +446,11 @@ export default function CocoConcept() {
             </NavLink>
           </div>
         </section>
+
+        {/*temporaire - formulaire */}
+        <div className="bg-amber-100  p-4 lg:p-16">
+          <AvisForm />
+        </div>
       </main>
     </>
   );
