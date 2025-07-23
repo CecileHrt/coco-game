@@ -1,0 +1,303 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Yusei+Magic&display=swap");
+@import "tailwindcss";
+
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("./assets/open_dyslexic/OpenDyslexic-Regular.otf") format("opentype");
+}
+
+/* - -  Accessibilité - - */
+/* - -  Accessibilité - - */
+/* Contrast */
+.high-contrast {
+  background-color: #000 !important;
+  color: #fff9f9 !important;
+}
+.high-contrast p,
+.high-contrast h1,
+.high-contrast h2,
+.high-contrast h3,
+.high-contrast h4,
+.high-contrast h5,
+.high-contrast h6 {
+  padding: 5px !important;
+}
+
+.high-contrast * {
+  background-color: transparent !important;
+  color: #fefcff !important;
+  outline-color: yellow;
+  outline-width: 2px;
+  outline-style: solid;
+  background-image: none !important;
+}
+.high-contrast i path,
+.high-contrast i,
+.high-contrast div,
+.high-contrast figure {
+  outline-width: 0px !important;
+}
+
+/* Font Dys */
+.dys-font * {
+  font-family: "OpenDyslexic", sans-serif !important;
+  /* letter-spacing: 1.3px !important; */
+  /* line-height: 1.8 !important; */
+}
+/* - - Elements de bases - - */
+/* - - Elements de bases - - */
+:root {
+  font-family: "Nunito", sans-serif;
+  line-height: 1.5;
+
+  color-scheme: light dark;
+  color: #fefcff;
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --font-yusei: "Yusei Magic", sans-serif;
+
+  --color-mauve-omb: #b031d7;
+  --color-mauve-mid: #d66dee;
+  --color-mauve-clair: #d27eea;
+  --color-mauve-pastel: #ede1f6;
+  --color-bleu-canard: #0e4555;
+  --color-blanc-mauve: #fefcff;
+  --color-blanc-bleu: #f8f8ff;
+  --color-noir: #1f1b24;
+  --color-jaune: #ffc831;
+
+  /* Préparation des dégradés :  */
+  /* className="bg-linear-[160deg] from-[#ede1f6] to-[#eaceff]" - from-[#EDE1F6] to-[#EACEFF]*/
+  /* className="bg-linear-[160deg] from-[#ede1f6] via-[#C3A3FF] to-[#8964C2]" */
+  /* className="bg-linear-[160deg] from-[#FFD8FA] via-[#C3A3FF] to-[#8964C2]"  */
+}
+
+body {
+  margin: 0;
+  /* display: flex; */
+  /* place-items: center; */
+  /* min-width: 320px; */
+  /* min-height: 100vh; */
+  font-family: "Nunito", sans-serif;
+  color: #1f1b24;
+}
+
+.center {
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* - - Titres - -  */
+/* - - Titres - -  */
+h1 {
+  /* font-size: 3.2em; */
+  /* text-align: center; */
+  padding: 8px 0 24px;
+  line-height: 1.3;
+}
+h1,
+h2 {
+  font-family: "Yusei Magic", sans-serif;
+}
+.box-h2 {
+  display: flex;
+  align-items: center;
+}
+/* .box-h2 i {
+  font-size: 20px;
+} */
+.box-h2 h2 {
+  /* margin: 0 8px;
+  font-size: 20px; */
+  font-weight: 600;
+}
+.box-h2 figure {
+  flex: 1;
+  height: 5px;
+  border-radius: 3px 3px 0 0;
+}
+
+/*  - - Navigations - -  */
+/*  - - Navigations - -  */
+
+/* Nav Pdv  */
+.logotype {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.logotype img {
+  object-fit: cover;
+  height: 100%;
+  margin-right: 12px;
+}
+.logotype strong {
+  font-family: "Yusei Magic", sans-serif;
+  color: #b031d7;
+  font-size: 26px;
+}
+
+/*  - - box bg - -  */
+/*  - - box bg - -  */
+.box-white-transparent {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  /* padding: 12px 8px; */
+}
+.box-white-shadow {
+  background-color: #ffff;
+  border-radius: 8px;
+  /* padding: 16px; */
+  box-shadow: 0px 3px 0px #b92ecd;
+}
+.box-white {
+  background-color: #ffff;
+  border-radius: 8px;
+}
+
+/* scroll bar en hover  */
+.scrollbar-hide {
+  overflow-x: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.scrollbar-hide:-webkit-scrollbar {
+  display: none;
+  height: 6px;
+}
+
+.scrollbar-hide:hover {
+  scrollbar-width: thin;
+}
+
+.scrollbar-hide:hover::-webkit-scrollbar {
+  display: block;
+  height: 6px;
+}
+
+.scrollbar-hidehover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+/*  - - Boutons - -  */
+/*  - - Boutons - -  */
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Btn carré */
+.btn-carre-jaune {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #ffe455, #fedc14);
+  box-shadow: 0px 3px 0px #ffac17;
+
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+/* .btn-carre-jaune:disabled,
+.btn-carre-jaune.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+} */
+.btn-carre-jaune i {
+  font-size: 20px;
+  color: #1f1b24;
+}
+
+/* Annuler - Valider modification */
+.btn-valider,
+.btn-annuler {
+  display: flex;
+  align-items: center;
+  color: #fefcff;
+  padding: 5px 10px;
+  background-color: #b031d7;
+  border: solid 1px #b031d7;
+  border-radius: 5px;
+  font-family: "Yusei Magic", sans-serif;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+.btn-valider {
+  color: #fefcff;
+  background-color: #b031d7;
+}
+.btn-annuler {
+  background-color: #fefcff;
+  color: #b031d7;
+}
+.btn-annuler i,
+.btn-valider i {
+  font-size: 20px;
+  margin-right: 8px;
+}
+.btn-valider:hover {
+  background-color: #fefcff;
+  color: #b031d7;
+}
+.btn-annuler:hover {
+  color: #fefcff;
+  background-color: #b031d7;
+}
+
+/* CTA principal et secondaire */
+.cta {
+  display: block;
+  text-align: center;
+  border: solid 1px;
+  border-radius: 5px;
+  font-family: "Yusei Magic", sans-serif;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+/* a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+} */
+
+/* button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+} */
+/* @media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  /* a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  } */
+/* } */

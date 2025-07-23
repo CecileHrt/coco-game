@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "auteur": "Alice, maman de Léa (7 ans)",
+    "message": "J’adore cette application ! La création du compte est rapide et simple, juste un email et un mot de passe pour moi, et le prénom, l’anniversaire et la classe pour Léa. Ça rassure de ne pas avoir à renseigner plein d’infos inutiles. Mon enfant s’amuse tout en apprenant, et je peux suivre ses progrès facilement.",
+    "timestamp": "2025-06-20T14:30:00Z",
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "auteur": "Sophie L., maman de Tom (5 ans)",
+    "message": "Ce que j’aime, c’est la simplicité du formulaire d’inscription : pas besoin de donner trop d’infos personnelles. Tom a rapidement pris en main son compagnon, et je trouve ça génial qu’on puisse personnaliser l’expérience avec son prénom et sa classe. Une appli bienveillante, sans prise de tête !",
+    "timestamp": "2025-06-15T10:12:00Z",
+    "rating": 4
+  },
+  {
+    "id": 3,
+    "auteur": "Julien, enseignant en primaire",
+    "message": "Simple à configurer, sécurisée et respectueuse des données : juste ce qu’il faut pour que mes élèves puissent jouer sans risque. J’apprécie que l’application demande uniquement l’essentiel — c’est vraiment rassurant pour une utilisation en classe.",
+    "timestamp": "2025-05-31T08:00:00Z",
+    "rating": 5
+  },
+  {
+    "id": 4,
+    "auteur": "Alice, maman de Léa (7 ans)",
+    "message": "J’adore cette application ! La création du compte est rapide et simple, juste un email et un mot de passe pour moi, et le prénom, l’anniversaire et la classe pour Léa. Ça rassure de ne pas avoir à renseigner plein d’infos inutiles. Mon enfant s’amuse tout en apprenant, et je peux suivre ses progrès facilement.",
+    "timestamp": "2025-04-20T14:30:00Z",
+    "rating": 5
+  },
+  {
+    "id": 5,
+    "auteur": "Sophie L., maman de Tom (5 ans)",
+    "message": "Ce que j’aime, c’est la simplicité du formulaire d’inscription : pas besoin de donner trop d’infos personnelles. Tom a rapidement pris en main son compagnon, et je trouve ça génial qu’on puisse personnaliser l’expérience avec son prénom et sa classe. Une appli bienveillante, sans prise de tête !",
+    "timestamp": "2025-04-15T10:12:00Z",
+    "rating": 4
+  },
+  {
+    "id": 6,
+    "auteur": "Julien, enseignant en primaire",
+    "message": "Simple à configurer, sécurisée et respectueuse des données : juste ce qu’il faut pour que mes élèves puissent jouer sans risque. J’apprécie que l’application demande uniquement l’essentiel — c’est vraiment rassurant pour une utilisation en classe.",
+    "timestamp": "2025-03-31T08:00:00Z",
+    "rating": 5
+  }
+]
