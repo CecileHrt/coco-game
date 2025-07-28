@@ -1,9 +1,10 @@
 import { create } from "zustand";
 
+// user store ??
 const useInscriptionStore = create((set) => ({
-  mail: "",
-  password: "",
-  confirmPassword: "",
+  user: null,
+  setUser: (user) => set({ user }),
+  clearUser: () => set({ user: null }), //deconnexion
 }));
 
 export default useInscriptionStore;

@@ -72,7 +72,7 @@ export default function CreationProfilEnf() {
         </div>
 
         <h1 className="text-3xl text-center md:text-4xl font-bold">
-          Créerun profil enfant
+          Créer un profil enfant
         </h1>
 
         <div className="box-white md:max-w-3xl md:mx-auto p-4 md:p-12 xl:max-w-6xl space-y-4 min-h-[70vh]">

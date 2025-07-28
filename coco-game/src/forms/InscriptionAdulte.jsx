@@ -1,12 +1,17 @@
 import NavBarJeu from "../components/NavBarJeu.jsx";
 import { FaEgg } from "react-icons/fa6";
-import { NavLink } from "react-router-dom";
+import useInscriptionStore from "../stores/useInscriptionStore.js";
+import { signup } from "../apis/auth.api.js";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 
 export default function InscriptionAdulte() {
+  const navigate = useNavigate();
+  const { setUser } = useInscriptionStore();
+
   const defaultValues = {
     mail: "",
     password: "",
@@ -51,16 +56,23 @@ export default function InscriptionAdulte() {
   });
 
   async function submit(values) {
-    console.log(values);
+    // console.log(values);
     try {
-      toast.success("Inscription réussie !");
-      // reset(defaultValues);
-      // navigate vers : /creer-profil-enfant
+      const response = await signup(values);
+      if (response.message) {
+        setUser(response.user);
+        reset(defaultValues);
+        toast.success("Inscription réussie !");
+        console.log("Je redirige vers créer-profil-enfant");
+        navigate("/creer-profil-enfant");
+        console.log("Inscription réussie :", response.user);
+      } else {
+        toast.error(response.message);
+      }
     } catch (error) {
       toast.error("Une erreur est survenue lors de l'inscription.");
     }
   }
-
   return (
     <>
       <NavBarJeu />
