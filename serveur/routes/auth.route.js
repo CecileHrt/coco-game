@@ -1,11 +1,16 @@
 const router = require("express").Router();
+const {
+  signupMail,
+  signupMdp,
+  verifyMail,
+} = require("../controllers/auth.controller.js");
 
-router.get("/", (req, res) => {
-  res.status(201).json("Ceci est une requête get sur la route /auth");
-});
-router.post("/", (req, res) => {
-  res.status(201).json("Ceci est une requête post sur la route /auth");
-});
+router.post("/", signupMail);
+router.post("/finaliser-inscription/:token", signupMdp);
+
+router.get("/verifyMail/:token", verifyMail);
+
+// router.post("/", (req, res) => {});
 
 module.exports = router;
 // localhost:3000/auth

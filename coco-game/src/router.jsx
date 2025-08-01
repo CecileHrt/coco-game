@@ -8,6 +8,8 @@ import CompteAdulte from "./pages/CompteAdulte";
 import ProfilEnfant from "./pages/ProfilEnfant";
 import CreationProfilEnf from "./forms/CreationProfilEnf";
 import InscriptionAdulte from "./forms/InscriptionAdulte";
+import InscriptionMail from "./forms/signup/InscriptionMail";
+import InscriptionMdp from "./forms/signup/InscriptionMdp";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +44,18 @@ export const router = createBrowserRouter([
       {
         path: "/inscription",
         element: <InscriptionAdulte />, // <UserConnected>
+        children: [
+          {
+            // > /inscription
+            index: true,
+            element: <InscriptionMail />, // <UserNotConnected>
+          },
+          {
+            // > /inscription/finaliser-inscription
+            path: "finaliser-inscription",
+            element: <InscriptionMdp />, // <UserConnected>
+          },
+        ],
       },
       {
         path: "/creer-profil-enfant",

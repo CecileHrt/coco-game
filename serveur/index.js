@@ -20,10 +20,10 @@ app.use(
 );
 
 // test middlewares
-app.use((req, res, next) => {
-  console.log("test mw : ", `${req.method} ${req.path}`);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log("test mw : ", `${req.method} ${req.path}`);
+//   next();
+// });
 
 // test routes
 // app.post("/", (req, res) => {
