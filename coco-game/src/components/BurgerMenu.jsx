@@ -1,13 +1,11 @@
 import { useState } from "react";
 
-export default function BurgerMenu({ toggleMenu }) {
-  const [active, setActive] = useState(false);
-
+export default function BurgerMenu({ toggleMenu, toggleActive, active }) {
   return (
     <div
       className="relative w-11 h-8 cursor-pointer"
       onClick={() => {
-        setActive(!active);
+        toggleActive();
         toggleMenu();
       }}
     >

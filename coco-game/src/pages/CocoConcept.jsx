@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import NavBarPdv from "../components/NavBarPdv";
-import { NavLink } from "react-router-dom";
+import { NavLink, useSearchParams } from "react-router-dom";
 import { FaHeart, FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { FaEgg } from "react-icons/fa6";
 import useConceptStore from "../stores/useConceptStore";
@@ -10,6 +10,19 @@ import AvisType from "../components/cocoConcept/AvisType";
 import AvisForm from "../forms/AvisForm";
 
 export default function CocoConcept() {
+  const [searchParams] = useSearchParams(); // récupère les search params
+  const data = searchParams.get("url"); // ici on récupère la valeur du param "url"
+  console.log("data", data); // affiche la valeur du param "url"
+
+  useEffect(() => {
+    if (data) {
+      const element = document.getElementById(data);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  }, [data]); // dépendance sur data pour réagir aux changements
+
   const argumentsList = useConceptStore((state) => state.argumentsList);
   const ListeEnfant = argumentsList.filter((arg) => arg.cible === "enfants");
   const ListeAdulte = argumentsList.filter((arg) => arg.cible === "adultes");
@@ -90,7 +103,7 @@ export default function CocoConcept() {
                 de&nbsp;4&nbsp;à&nbsp;10&nbsp;ans.
               </p>
               <NavLink
-                to="/choix-coco"
+                to="/inscription"
                 className="cta text-lg my-10 px-2 py-2 md:text-2xl bg-[var(--color-bleu-canard)] text-[var(--color-blanc-mauve)] border-[var(--color-bleu-canard)] hover:bg-[var(--color-blanc-mauve)] hover:text-[var(--color-bleu-canard)]"
               >
                 Commencer l'aventure
@@ -332,7 +345,7 @@ export default function CocoConcept() {
             </div>
             <div className="mx-auto w-70 xl:w-100 ">
               <NavLink
-                to="/choix-coco"
+                to="/inscription"
                 className="cta text-lg my-10 px-2 py-2 md:text-2xl hover:bg-[var(--color-bleu-canard)] hover:text-[var(--color-blanc-mauve)] border-[var(--color-bleu-canard)] bg-[var(--color-blanc-mauve)] text-[var(--color-bleu-canard)]"
               >
                 Découvrir l'univers
@@ -445,7 +458,7 @@ export default function CocoConcept() {
           </div>
           <div className="mx-auto w-70 xl:w-100 ">
             <NavLink
-              to="/choix-coco"
+              to="/inscription"
               className="cta text-lg my-10 px-2 pt-2 pb-3 md:text-2xl bg-[var(--color-bleu-canard)] text-[var(--color-blanc-mauve)] border-[var(--color-bleu-canard)] hover:bg-[var(--color-blanc-mauve)] hover:text-[var(--color-bleu-canard)]"
             >
               Commencer l'aventure

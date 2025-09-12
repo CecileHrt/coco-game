@@ -12,12 +12,18 @@ import { FaEgg } from "react-icons/fa6";
 import { GiBirdHouse } from "react-icons/gi";
 
 export default function NavBarPdv() {
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [active, setActive] = useState(false);
+
+  const toggleActive = () => {
+    setActive(!active);
+  };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
   return (
     <header className="relative flex items-center justify-between p-2 bg-[var(--color-blanc-mauve)] lg:px-6">
       <div className="logotype">
@@ -28,7 +34,11 @@ export default function NavBarPdv() {
         />
         <strong>Coco Game</strong>
       </div>
-      <BurgerMenu toggleMenu={toggleMenu} />
+      <BurgerMenu
+        toggleMenu={toggleMenu}
+        toggleActive={toggleActive}
+        active={active}
+      />
 
       {menuOpen && (
         <div className="opacity-100 z-50 absolute top-14 h-[100vh] right-0 w-full bg-[#ede1f6]/80 p-4">
@@ -36,7 +46,7 @@ export default function NavBarPdv() {
             {user && (
               <NavLink
                 className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] bg-[var(--color-mauve-pastel)]/70 transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-                to="/choix-coco"
+                to="/inscription"
               >
                 <li className="flex items-center">
                   <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
@@ -49,7 +59,7 @@ export default function NavBarPdv() {
 
             <NavLink
               className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/coco-concept"
+              to="/"
             >
               <li className="flex items-center ">
                 <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
@@ -61,7 +71,11 @@ export default function NavBarPdv() {
 
             <NavLink
               className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/coco-concept#fonctionnalité"
+              to={`?url=fonctionnalites`}
+              onClick={() => {
+                toggleMenu();
+                toggleActive();
+              }}
             >
               <li className="flex items-center">
                 <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
@@ -82,7 +96,7 @@ export default function NavBarPdv() {
               </li>
             </NavLink>
             {/*  si connecté alors  */}
-            {!user ? (
+            {user ? (
               <>
                 <NavLink
                   className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}

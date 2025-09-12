@@ -194,6 +194,19 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Btn jaune sans taille */
+.btn-jaune {
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #ffe455, #fedc14);
+  box-shadow: 0px 3px 0px #ffac17;
+
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
 /* Btn carré */
 .btn-carre-jaune {
   width: 30px;

@@ -7,6 +7,12 @@ import { FaSignOutAlt, FaUser, FaChild, FaChartLine } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
 
 export default function NavBarJeu() {
+  const [active, setActive] = useState(false);
+
+  const toggleActive = () => {
+    setActive(!active);
+  };
+
   // const [user, setUser] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -24,7 +30,11 @@ export default function NavBarJeu() {
         <strong>Coco Game</strong>
       </div>
 
-      <BurgerMenu toggleMenu={toggleMenu} />
+      <BurgerMenu
+        toggleMenu={toggleMenu}
+        toggleActive={toggleActive}
+        active={active}
+      />
 
       {menuOpen && (
         <div className="opacity-100 z-50 absolute top-14 h-[100vh] right-0 w-full bg-[#ede1f6]/80 p-4">
@@ -43,7 +53,7 @@ export default function NavBarJeu() {
 
             <NavLink
               className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/choix-profil"
+              to="/tableau-de-bord"
             >
               <li className="flex items-center">
                 <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
@@ -55,7 +65,7 @@ export default function NavBarJeu() {
 
             <NavLink
               className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/logout"
+              to="/mon-compte"
             >
               <li className="flex items-center">
                 <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
@@ -67,7 +77,7 @@ export default function NavBarJeu() {
 
             <NavLink
               className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/logout"
+              to="/profil-enfant"
             >
               <li className="flex items-center">
                 <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
@@ -79,7 +89,7 @@ export default function NavBarJeu() {
 
             <NavLink
               className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/logout"
+              to="/preferences"
             >
               <li className="flex items-center">
                 <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">

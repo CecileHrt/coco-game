@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/edit-mon-compte",
-        element: <CompteAdulte />, // <UserConnected>
+        element: <CompteAdulte />, // A modifier - <UserConnected>
       },
       {
         path: "/profil-enfant",
@@ -39,11 +39,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/edit-profil-enfant",
-        element: <ProfilEnfant />, // <UserConnected>
+        element: <ProfilEnfant />, // A modifier - <UserConnected>
       },
       {
         path: "/inscription",
-        element: <InscriptionAdulte />, // <UserConnected>
+        element: <InscriptionAdulte />, // <UserNotConnected>
         children: [
           {
             // > /inscription
@@ -53,7 +53,7 @@ export const router = createBrowserRouter([
           {
             // > /inscription/finaliser-inscription
             path: "finaliser-inscription",
-            element: <InscriptionMdp />, // <UserConnected>
+            element: <InscriptionMdp />, // <UserNotConnected>
           },
         ],
       },
@@ -67,27 +67,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "/choix-coco",
-        element: <Preferences />, // a modifier
+        element: <Page404 />, // a modifier
       },
       {
         path: "/choix-profil",
-        element: <Preferences />, // a modifier
+        element: <Page404 />, // a modifier
       },
       {
         path: "/logout",
-        element: <Preferences />, // a modifier
+        element: <Page404 />, // a modifier
       },
       {
         path: "/login",
-        element: <Preferences />, // a modifier
+        element: <Page404 />, // a modifier
       },
       {
         path: "/mentions-legales",
-        element: <Preferences />, // a modifier
+        element: <Page404 />, // a modifier
       },
       {
         path: "/politique-confidentialite",
-        element: <Preferences />, // a modifier
+        element: <Page404 />, // a modifier
       },
     ],
   },

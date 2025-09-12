@@ -3,10 +3,13 @@ const {
   signupMail,
   signupMdp,
   verifyMail,
+  addChildProfile,
 } = require("../controllers/auth.controller.js");
+const authentification = require("../middlewares/authMiddleware.js");
 
 router.post("/", signupMail);
 router.post("/finaliser-inscription/:token", signupMdp);
+router.post("/creer-profil-enfant", authentification, addChildProfile);
 
 router.get("/verifyMail/:token", verifyMail);
 

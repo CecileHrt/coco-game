@@ -5,7 +5,7 @@ export const Star = ({ filled, onClick }) => (
   <button
     type="button"
     onClick={onClick}
-    className="text-yellow-500  focus:outline-none"
+    className="text-yellow-300  focus:outline-none"
     aria-label={filled ? "Étoile remplie" : "Étoile vide"}
   >
     {filled ? (

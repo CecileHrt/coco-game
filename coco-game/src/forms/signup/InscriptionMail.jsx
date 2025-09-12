@@ -3,8 +3,20 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import { signupMail } from "../../apis/auth.api.js";
+import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function InscriptionMail() {
+  const [searchParams] = useSearchParams();
+  useEffect(() => {
+    const message = searchParams.get("message");
+    if (message === "invalid-token") {
+      toast.error(
+        "Le lien de confirmation a expiré ou est invalide. Veuillez renseigner une nouvelle fois votre email."
+      );
+    }
+  }, [searchParams]);
+
   const defaultValues = {
     mail: "",
   };
@@ -73,7 +85,7 @@ export default function InscriptionMail() {
         <input
           type="submit"
           className="btn-valider self-end md:text-lg mt-4"
-          value="Créer un compte"
+          value="Transmettre mon email"
         />
       </form>
     </>

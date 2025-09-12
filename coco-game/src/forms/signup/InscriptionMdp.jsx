@@ -1,11 +1,6 @@
 import useInscriptionStore from "../../stores/useInscriptionStore.js";
 // import { signup } from "../apis/auth.api.js";
-import {
-  useNavigate,
-  NavLink,
-  useParams,
-  useSearchParams,
-} from "react-router-dom";
+import { useNavigate, NavLink, useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";

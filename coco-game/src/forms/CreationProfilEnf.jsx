@@ -1,16 +1,21 @@
 import NavBarJeu from "../components/NavBarJeu.jsx";
 import { FaEgg } from "react-icons/fa6";
-import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { createProfile } from "../apis/auth.api.js";
+import useInscriptionStore from "../stores/useInscriptionStore";
 
 export default function CreationProfilEnf() {
+  const addChildProfile = useInscriptionStore((state) => state.addChildProfile);
+  const navigate = useNavigate();
+
   const defaultValues = {
     prenom: "",
-    age: "",
+    anniversaire: "",
     classe: "",
     // image de profil
   };
@@ -21,7 +26,7 @@ export default function CreationProfilEnf() {
       .required("Le champ est obligatoire")
       .min(2, "Le prénom est trop court")
       .max(50, "Le prénom est trop long"),
-    age: yup
+    anniversaire: yup
       .date()
       .typeError("Veuillez entrer une date valide")
       .required("Le champ est obligatoire")
@@ -45,11 +50,21 @@ export default function CreationProfilEnf() {
   });
 
   async function submit(values) {
-    console.log(values);
+    //console.log(values);
     try {
+      const child = await createProfile(values);
+      if (!child) {
+        toast.error("Impossible de créer le profil enfant.");
+        return; // si pas de child, on arrête la fonction
+      }
+      addChildProfile(child);
       toast.success("Profil enregistré !");
-      // reset(defaultValues);
+      reset(defaultValues);
+      console.log("Nouvel enfant créé :", child);
+
+      navigate("/preferences"); // a modifier plus tard
     } catch (error) {
+      console.error(error);
       toast.error("Une erreur est survenue lors de l'enregistrement.");
     }
   }
@@ -121,19 +136,22 @@ export default function CreationProfilEnf() {
 
             {/* AGE */}
             <div className="flex flex-col space-x-4 mb-2">
-              <label htmlFor="age" className="mt-4 mb-2 md:text-lg font-[700]">
+              <label
+                htmlFor="anniversaire"
+                className="mt-4 mb-2 md:text-lg font-[700]"
+              >
                 Date de naissance :
               </label>
               <input
-                {...register("age")}
+                {...register("anniversaire")}
                 type="date"
-                id="age"
+                id="anniversaire"
                 required
                 placeholder="10/07/17"
                 className="bg-[var(--color-blanc-bleu)] p-1 md:p-3 rounded shadow md:text-lg"
               />
-              {errors.age && (
-                <p className="text-red-500">{errors.age.message}</p>
+              {errors.anniversaire && (
+                <p className="text-red-500">{errors.anniversaire.message}</p>
               )}
             </div>
 
