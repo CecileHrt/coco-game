@@ -4,10 +4,16 @@ const jsonwebtoken = require("jsonwebtoken");
 const {
   sendConfirmationEmail,
   sendAccountAlreadyExistsEmail,
+  sendForgotPasswordEmail,
+  validateNewPassword,
 } = require("../mails/optin.js");
 const TempUser = require("../models/tempUser.model.js");
 
 const SECRET_KEY = process.env.SECRET_KEY;
+
+// -- -- -- -- -- -- --
+// Inscription
+// -- -- -- -- -- -- --
 
 // création d'un token pour l'email
 const createTokenEmail = (mail) => {
@@ -18,14 +24,13 @@ const createTokenEmail = (mail) => {
 
 // inscription étape 1 : envoi du mail de confirmation
 const signupMail = async (req, res) => {
-  // console.log(req.body);
-  console.log("signupMail appelée avec", req.body);
+  // console.log("signupMail appelée avec", req.body);
   try {
     const { mail } = req.body;
     const user = await User.findOne({ mail });
     if (user) {
       await sendAccountAlreadyExistsEmail(mail);
-      console.log("email de redirection envoyé à ", mail);
+      console.log("email de réinitialisation envoyé à ", mail);
       return res.status(400).json({
         success: true, // pour éviter d'informer un potentiel attaquant
         message:
@@ -34,7 +39,7 @@ const signupMail = async (req, res) => {
     }
     const token = createTokenEmail(mail);
     await sendConfirmationEmail(mail, token);
-    // console.log("email de confirmation envoyé à ", mail);
+    console.log("email de confirmation envoyé à ", mail);
     const tempUser = new TempUser({
       mail,
       token,
@@ -128,11 +133,17 @@ const addChildProfile = async (req, res) => {
   const { prenom, anniversaire, classe } = req.body;
   try {
     const adult = await User.findById(req.user._id);
+    const prenomExiste = adult.child.some(
+      (child) => child.prenom.toLowerCase() === prenom.toLowerCase()
+    );
+
+    if (prenomExiste) {
+      return res.status(400).json({ message: "Ce prénom est déjà utilisé." });
+    }
+    //console.log("prénom unique :", prenomExiste);
+
     adult.child.push({ prenom, anniversaire, classe });
     await adult.save();
-    // if (!user) {
-    //   return res.status(404).json({ message: "Utilisateur introuvable" });
-    // }
     // console.log("Utilisateur trouvé :", adult);
     res.json({ message: "Enfant reçu", child: adult });
   } catch (error) {
@@ -141,4 +152,131 @@ const addChildProfile = async (req, res) => {
   }
 };
 
-module.exports = { signupMail, signupMdp, verifyMail, addChildProfile };
+// -- -- -- -- -- -- --
+// Connexion Déconnexion
+// -- -- -- -- -- -- --
+
+const connexion = async (req, res) => {
+  try {
+    const { mail, password } = req.body;
+    // console.log("login appelée avec", req.body);
+    const user = await User.findOne({ mail });
+    if (!user) {
+      res.status(400).json({ message: "Email et/ou mot de passe incorrect" });
+    }
+    const isValid = await bcrypt.compare(password, user.password);
+    if (!isValid) {
+      return res
+        .status(400)
+        .json({ message: "Email et/ou mot de passe incorrect" });
+    }
+    const { password: _, ...userWithoutPassword } = user.toObject();
+    const tokenUser = jsonwebtoken.sign({}, SECRET_KEY, {
+      subject: user._id.toString(),
+      expiresIn: "7d",
+      algorithm: "HS256",
+    });
+
+    res.cookie("tokenUser", tokenUser, {
+      httpOnly: true,
+      secure: false, // à passer à true en production avec HTTPS
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    res
+      .status(200)
+      .json({ user: userWithoutPassword, message: "Connexion réussie !" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Une erreur est survenue." });
+  }
+};
+
+// Mot de passe oublié 1 : envoyer le lien de réinitialisation
+const forgotPassword = async (req, res) => {
+  const { mail } = req.body;
+  console.log("controller", req.body);
+  try {
+    const user = await User.findOne({ mail });
+    if (user) {
+      const token = createTokenEmail(mail);
+      await sendForgotPasswordEmail(mail, token);
+      await User.updateOne(
+        { mail },
+        {
+          resetToken: token,
+        }
+      );
+    }
+    res.json({ message: "Si un compte est associé, vous recevrez un mail" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Mot de passe oublié 2 : réinitialiser le mot de passe
+const resetPassword = async (req, res) => {
+  const { password, token } = req.body;
+  console.log(req.body);
+  try {
+    const decoded = jsonwebtoken.verify(token, process.env.SECRET_KEY);
+    const user = await User.findOne({ mail: decoded.mail });
+    console.log("user trouvé", user);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    user.password = hashedPassword;
+    user.resetToken = null;
+    await user.save();
+    await validateNewPassword(user.mail);
+    res.status(200).json({ messageOk: "Mot de passe mis à jour avec succès" });
+  } catch (error) {
+    res.status(400).json({ message: "Jeton d'authentification invalide" });
+  }
+};
+
+// const changePassword = async (req, res) => {
+//   console.log(req.body);
+//   // récupérer l'ID
+//   const { currentPassword, newPassword, userId } = req.body;
+//   try {
+//     // récupérer l'utilisateur connecté avec son ID
+//     const user = await User.findById(userId);
+
+//     // vérifier que le mot de passe actuel est bien celui de l'utilisateur connecté
+//     const isMatch = await bcrypt.compare(currentPassword, user.password);
+//     if (!isMatch) {
+//       return res.status(401).json({ message: "Mot de passe actuel incorrect" });
+//     }
+
+//     // vérifier que le nouveau mot de passe est différent de l'actuel
+//     const isSameAsOld = await bcrypt.compare(newPassword, user.password);
+//     if (isSameAsOld) {
+//       return res.status(401).json({
+//         message: "Le nouveau mot de passe doit être différent de l'ancien",
+//       });
+//     }
+
+//     // tout est OK, on hash le nouveau de mot de passe et on modifie l'utilisateur en BDD
+//     const hashed = await bcrypt.hash(newPassword, 10);
+//     user.password = hashed;
+//     await user.save();
+//     // envoi mail et feedback
+
+//     await validateNewPassword(user.email);
+//     return res
+//       .status(200)
+//       .json({ messageOk: "Mot de passe modifié avec succès" });
+//   } catch (error) {}
+
+//   // redirection page accueil côté front
+// };
+
+module.exports = {
+  signupMail,
+  signupMdp,
+  verifyMail,
+  addChildProfile,
+  connexion,
+  forgotPassword,
+  resetPassword,
+  // changePassword,
+};

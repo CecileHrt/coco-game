@@ -12,7 +12,7 @@ import AvisForm from "../forms/AvisForm";
 export default function CocoConcept() {
   const [searchParams] = useSearchParams(); // récupère les search params
   const data = searchParams.get("url"); // ici on récupère la valeur du param "url"
-  console.log("data", data); // affiche la valeur du param "url"
+  // console.log("data", data); // affiche la valeur du param "url"
 
   useEffect(() => {
     if (data) {

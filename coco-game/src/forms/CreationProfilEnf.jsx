@@ -60,9 +60,8 @@ export default function CreationProfilEnf() {
       addChildProfile(child);
       toast.success("Profil enregistré !");
       reset(defaultValues);
-      console.log("Nouvel enfant créé :", child);
-
-      navigate("/preferences"); // a modifier plus tard
+      // console.log("Nouvel enfant créé :", child);
+      navigate("/confirmer-preferences");
     } catch (error) {
       console.error(error);
       toast.error("Une erreur est survenue lors de l'enregistrement.");
@@ -73,7 +72,7 @@ export default function CreationProfilEnf() {
     <>
       <NavBarJeu />
       <main className="bg-linear-[160deg] p-2 from-[#EDE1F6] to-[#EACEFF] w-full min-h-screen">
-        {/* STARTER 1 */}
+        {/* STARTER 2 */}
         <div className="flex items-center justify-center my-10 md:my-12 space-x-1.5 md:max-w-3xl xl:max-w-6xl md:mx-auto">
           <i className="text-lg md:text-2xl xl:text-3xl text-[var(--color-mauve-mid)]">
             <FaEgg />

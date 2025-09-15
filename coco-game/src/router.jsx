@@ -1,15 +1,23 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Page404 from "./pages/Page404";
+// Pages Adultes
 import CocoConcept from "./pages/CocoConcept";
 import Preferences from "./pages/Preferences";
 import TableauBord from "./pages/TableauBord";
 import CompteAdulte from "./pages/CompteAdulte";
 import ProfilEnfant from "./pages/ProfilEnfant";
+// Pages Inscription
 import CreationProfilEnf from "./forms/CreationProfilEnf";
 import InscriptionAdulte from "./forms/InscriptionAdulte";
 import InscriptionMail from "./forms/signup/InscriptionMail";
 import InscriptionMdp from "./forms/signup/InscriptionMdp";
+import ConfirmPreferences from "./pages/ConfirmPreferences";
+// Pages Connexion et Déconnexion
+import Connexion from "./forms/loginLogout/Connexion";
+import MdpOublie from "./forms/loginLogout/MdpOublie";
+import ReinitMdp from "./forms/loginLogout/ReinitMdp";
+// Pages de jeux
 
 export const router = createBrowserRouter([
   {
@@ -22,8 +30,12 @@ export const router = createBrowserRouter([
         element: <CocoConcept />, // <UserNotConnected>
       },
       {
-        path: "/preferences",
+        path: "/edit-preferences",
         element: <Preferences />, // <UserConnected>
+      },
+      {
+        path: "/preferences",
+        element: <Preferences />, // A modifier - <UserConnected>
       },
       {
         path: "/mon-compte",
@@ -62,6 +74,14 @@ export const router = createBrowserRouter([
         element: <CreationProfilEnf />, // <UserConnected>
       },
       {
+        path: "/confirmer-preferences",
+        element: <ConfirmPreferences />, // <UserConnected>
+      },
+      {
+        path: "/naissance-coco",
+        element: <Page404 />, // <UserConnected>
+      },
+      {
         path: "/tableau-de-bord",
         element: <TableauBord />, // <UserConnected>
       },
@@ -70,16 +90,20 @@ export const router = createBrowserRouter([
         element: <Page404 />, // a modifier
       },
       {
-        path: "/choix-profil",
-        element: <Page404 />, // a modifier
+        path: "/deconnexion",
+        element: <Page404 />, // a modifier // <UserConnected>
       },
       {
-        path: "/logout",
-        element: <Page404 />, // a modifier
+        path: "/connexion",
+        element: <Connexion />, // <UserNotConnected>
       },
       {
-        path: "/login",
-        element: <Page404 />, // a modifier
+        path: "/mot-de-passe-oublie",
+        element: <MdpOublie />, // <UserNotConnected>
+      },
+      {
+        path: "/reinitialiser-mot-de-passe/:token",
+        element: <ReinitMdp />, // <UserNotConnected>
       },
       {
         path: "/mentions-legales",
