@@ -90,10 +90,6 @@ export const router = createBrowserRouter([
         element: <Page404 />, // a modifier
       },
       {
-        path: "/deconnexion",
-        element: <Page404 />, // a modifier // <UserConnected>
-      },
-      {
         path: "/connexion",
         element: <Connexion />, // <UserNotConnected>
       },

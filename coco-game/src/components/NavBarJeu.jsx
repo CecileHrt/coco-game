@@ -1,14 +1,24 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import BurgerMenu from "../components/BurgerMenu";
 import { GiBirdHouse } from "react-icons/gi";
 import { FaSignOutAlt, FaUser, FaChild, FaChartLine } from "react-icons/fa";
 // import {FaHome, FaCheck } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
+import useInscriptionStore from "../stores/useInscriptionStore";
 
 export default function NavBarJeu() {
   const [active, setActive] = useState(false);
+  // Déconnexion
+  const clearUser = useInscriptionStore((state) => state.clearUser);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    clearUser();
+    setMenuOpen(false);
+    navigate("/");
+  };
 
+  // Toggle class active
   const toggleActive = () => {
     setActive(!active);
   };
@@ -101,7 +111,7 @@ export default function NavBarJeu() {
 
             <NavLink
               className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/deconnexion"
+              onClick={handleLogout}
             >
               <li className="flex items-center">
                 <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
