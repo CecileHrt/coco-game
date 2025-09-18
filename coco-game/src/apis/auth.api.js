@@ -58,7 +58,9 @@ export const signupMdp = async (values, token) => {
         credentials: "include",
       }
     );
+    console.log("response dans signupMdp", response);
     const userConnected = await response.json();
+    console.log("userConnected dans signupMdp", userConnected);
     return userConnected;
   } catch (error) {
     console.log(error);
@@ -77,15 +79,15 @@ export const createProfile = async (values) => {
       },
       credentials: "include",
     });
-    const child = await response.json(); //child = result (variable envoyée par le serveur)
+    const data = await response.json(); //child = result (variable envoyée par le serveur)
     // console.log("Réponse serveur addChildProfile(child) :", child);
     //Si le prénom de l'enfant est déjà utilisé et retourne un message d'erreur
     if (!response.ok) {
       throw new Error(
-        child.message || "Erreur lors de la création du profil enfant"
+        data.message || "Erreur lors de la création du profil enfant"
       );
     }
-    return child;
+    return data.user;
   } catch (error) {
     console.log(error);
   }
@@ -146,18 +148,3 @@ export async function resetPassword(values) {
     console.log(error);
   }
 }
-
-// export async function changePassword(values) {
-//   try {
-//     const response = await fetch(`${BASE_URL}/auth/changePassword`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(values),
-//     });
-//     return await response.json();
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }

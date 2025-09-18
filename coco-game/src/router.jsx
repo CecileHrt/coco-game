@@ -1,23 +1,27 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import Page404 from "./pages/Page404";
+import Page404 from "./pagesAdulte/Page404";
+import UserConnected from "./protectedRoutes/UserConnected";
+import UserNotConnected from "./protectedRoutes/UserNotConnected";
 // Pages Adultes
-import CocoConcept from "./pages/CocoConcept";
-import Preferences from "./pages/Preferences";
-import TableauBord from "./pages/TableauBord";
-import CompteAdulte from "./pages/CompteAdulte";
-import ProfilEnfant from "./pages/ProfilEnfant";
+import CocoConcept from "./pagesAdulte/CocoConcept";
+import Preferences from "./pagesAdulte/Preferences";
+import TableauBord from "./pagesAdulte/TableauBord";
+import CompteAdulte from "./pagesAdulte/CompteAdulte";
+import ProfilEnfant from "./pagesAdulte/ProfilEnfant";
 // Pages Inscription
 import CreationProfilEnf from "./forms/CreationProfilEnf";
 import InscriptionAdulte from "./forms/InscriptionAdulte";
 import InscriptionMail from "./forms/signup/InscriptionMail";
 import InscriptionMdp from "./forms/signup/InscriptionMdp";
-import ConfirmPreferences from "./pages/ConfirmPreferences";
-// Pages Connexion et Déconnexion
-import Connexion from "./forms/loginLogout/Connexion";
-import MdpOublie from "./forms/loginLogout/MdpOublie";
-import ReinitMdp from "./forms/loginLogout/ReinitMdp";
+import ConfirmPreferences from "./pagesAdulte/ConfirmPreferences";
+// Pages Connexion et Reinitialisation mot de passe
+import Connexion from "./forms/login/Connexion";
+import MdpOublie from "./forms/login/MdpOublie";
+import ReinitMdp from "./forms/login/ReinitMdp";
 // Pages de jeux
+import NaissanceCoco from "./pagesAdulte/NaissanceCoco";
+import ChoixCoco from "./pagesEnfant/ChoixCoco";
 
 export const router = createBrowserRouter([
   {
@@ -27,96 +31,169 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <CocoConcept />, // <UserNotConnected>
+        element: (
+          // <UserNotConnected>
+          <CocoConcept />
+          // </UserNotConnected>
+        ),
       },
       {
         path: "/edit-preferences",
-        element: <Preferences />, // <UserConnected>
+
+        element: (
+          <UserConnected>
+            <Preferences />
+          </UserConnected>
+        ),
       },
       {
         path: "/preferences",
-        element: <Preferences />, // A modifier - <UserConnected>
+        element: (
+          <UserConnected>
+            <Preferences />
+          </UserConnected>
+        ), // A modifier - <UserConnected>
       },
       {
         path: "/mon-compte",
-        element: <CompteAdulte />, // <UserConnected>
+        element: (
+          <UserConnected>
+            <CompteAdulte />
+          </UserConnected>
+        ),
       },
       {
         path: "/edit-mon-compte",
-        element: <CompteAdulte />, // A modifier - <UserConnected>
+        element: (
+          <UserConnected>
+            <CompteAdulte />
+          </UserConnected>
+        ), // A modifier
       },
       {
         path: "/profil-enfant",
-        element: <ProfilEnfant />, // <UserConnected>
+        element: (
+          <UserConnected>
+            <ProfilEnfant />
+          </UserConnected>
+        ),
       },
       {
         path: "/edit-profil-enfant",
-        element: <ProfilEnfant />, // A modifier - <UserConnected>
+        element: (
+          <UserConnected>
+            <ProfilEnfant />
+          </UserConnected>
+        ), // A modifier
       },
       {
         path: "/inscription",
-        element: <InscriptionAdulte />, // <UserNotConnected>
+        element: (
+          <UserNotConnected>
+            <InscriptionAdulte />
+          </UserNotConnected>
+        ),
         children: [
           {
             // > /inscription
             index: true,
-            element: <InscriptionMail />, // <UserNotConnected>
+            element: (
+              <UserNotConnected>
+                <InscriptionMail />
+              </UserNotConnected>
+            ),
           },
           {
             // > /inscription/finaliser-inscription
             path: "finaliser-inscription",
-            element: <InscriptionMdp />, // <UserNotConnected>
+            element: (
+              <UserNotConnected>
+                <InscriptionMdp />
+              </UserNotConnected>
+            ),
           },
         ],
       },
       {
         path: "/creer-profil-enfant",
-        element: <CreationProfilEnf />, // <UserConnected>
+        element: (
+          <UserConnected>
+            <CreationProfilEnf />
+          </UserConnected>
+        ),
       },
       {
         path: "/confirmer-preferences",
-        element: <ConfirmPreferences />, // <UserConnected>
+        element: (
+          <UserConnected>
+            <ConfirmPreferences />
+          </UserConnected>
+        ),
       },
       {
         path: "/naissance-coco",
-        element: <Page404 />, // <UserConnected>
+        element: (
+          <UserConnected>
+            <NaissanceCoco />
+          </UserConnected>
+        ),
       },
       {
         path: "/tableau-de-bord",
-        element: <TableauBord />, // <UserConnected>
+        element: (
+          <UserConnected>
+            <TableauBord />
+          </UserConnected>
+        ),
       },
       {
         path: "/choix-coco",
-        element: <Page404 />, // a modifier
+        element: (
+          // <UserConnected>
+          <ChoixCoco />
+          // </UserConnected>
+        ),
       },
       {
         path: "/connexion",
-        element: <Connexion />, // <UserNotConnected>
+        element: (
+          <UserNotConnected>
+            <Connexion />
+          </UserNotConnected>
+        ),
       },
       {
         path: "/mot-de-passe-oublie",
-        element: <MdpOublie />, // <UserNotConnected>
+        element: (
+          <UserNotConnected>
+            <MdpOublie />
+          </UserNotConnected>
+        ),
       },
       {
         path: "/reinitialiser-mot-de-passe/:token",
-        element: <ReinitMdp />, // <UserNotConnected>
+        element: (
+          <UserNotConnected>
+            <ReinitMdp />
+          </UserNotConnected>
+        ),
       },
       {
         path: "/mentions-legales",
-        element: <Page404 />, // a modifier
+        element: (
+          <UserNotConnected>
+            <Page404 />
+          </UserNotConnected>
+        ),
       },
       {
         path: "/politique-confidentialite",
-        element: <Page404 />, // a modifier
+        element: (
+          <UserNotConnected>
+            <Page404 />
+          </UserNotConnected>
+        ),
       },
     ],
   },
 ]);
-
-// Choix du profil   <UserConnected>
-// un "PlayerConnected" ?
-// Login      <UserNotConnected>
-// Mot de passe oublié
-// Inscription      <UserNotConnected>
-// Profil enfant
-// Attention : Iscription, consultation et modification des pages

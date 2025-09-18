@@ -51,11 +51,17 @@ export default function InscriptionMdp() {
     // console.log(values);
     try {
       const response = await signupMdp(values, token);
-      if (response.message === "Inscription réussie !") {
-        setUser(response.user);
+      // if (response.message === "Inscription réussie !") {
+      //   setUser(response.user);
+      if (response.user) {
+        setUser(response.user); // stocke l'utilisateur
         reset(defaultValues);
         toast.success("Inscription réussie !");
-        navigate("/creer-profil-enfant");
+        // délai pour s'assurer que UserConnected voit le store mis à jour
+        setTimeout(() => {
+          navigate("/creer-profil-enfant");
+        }, 50);
+        // navigate("/creer-profil-enfant");
       } else {
         toast.error(response.message);
       }

@@ -1,54 +1,67 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-// user store ??
-const useInscriptionStore = create((set) => ({
-  // user
-  user: null,
-  setUser: (user) => set({ user }),
-  clearUser: () => set({ user: null }), //deconnexion
+const useInscriptionStore = create(
+  persist(
+    // permet la persistance de l'état dans le localStorage
+    (set) => ({
+      // user
+      user: null,
+      // setUser: (user) => set({ user }),
+      setUser: (user) =>
+        set({
+          user: {
+            ...user,
+            childList: user.childList || [], // assure que childList existe
+          },
+        }),
 
-  // Nouvel enfant
-  addChildProfile: (child) =>
-    set((state) => {
-      if (!state.user) return state; // si pas d'utilisateur, ne rien faire
-      return {
-        user: {
-          ...state.user, // copie des autres propriétés de l'utilisateur
-          childList: [...state.user.childList, child], // ajout du nouvel enfant à la liste
-        },
-      };
+      clearUser: () => set({ user: null }), // déconnexion
+
+      // Nouvel enfant
+      addChildProfile: (child) =>
+        set((state) => {
+          if (!state.user) return state;
+          return {
+            user: {
+              ...state.user,
+              childList: [...state.user.childList, child],
+            },
+          };
+        }),
+
+      // Suppression du profil enfant
+      removeChildProfile: (id_enfant) =>
+        set((state) => {
+          if (!state.user) return state;
+          return {
+            user: {
+              ...state.user,
+              childList: state.user.childList.filter(
+                (child) => child._id_enfant !== id_enfant
+              ),
+            },
+          };
+        }),
+
+      // Édition du profil enfant
+      updateChildProfile: (id_enfant, update) =>
+        set((state) => {
+          if (!state.user) return state;
+          return {
+            user: {
+              ...state.user,
+              childList: state.user.childList.map((child) =>
+                child._id_enfant === id_enfant ? { ...child, ...update } : child
+              ),
+            },
+          };
+        }),
     }),
-
-  // Supression du profil enfant
-  removeChildProfile: (id_enfant) =>
-    set((state) => {
-      if (!state.user) return state;
-      return {
-        user: {
-          ...state.user,
-          childList: state.user.childList.filter(
-            (child) => child._id_enfant !== id_enfant // garder tout sauf l'enfant à supprimer
-          ),
-        },
-      };
-    }),
-
-  // Edition du profil enfant
-  updateChildProfile: (id_enfant, update) =>
-    set((state) => {
-      if (!state.user) return state;
-      return {
-        user: {
-          ...state.user,
-          childList: state.user.childList.map(
-            (child) =>
-              child._id_enfant === id_enfant // chercher l'enfant qui match
-                ? { ...child, ...update } // si résultat = fusionner les données existantes avec les nouvelles
-                : child // sinon garder l'enfant tel quel
-          ),
-        },
-      };
-    }),
-}));
+    {
+      name: "inscription-storage", // clé dans localStorage
+    }
+  )
+);
 
 export default useInscriptionStore;

@@ -61,6 +61,7 @@ export default function Connexion() {
       toast.error("Une erreur est survenue lors de la connexion.");
     }
   }
+
   return (
     <>
       <NavBarJeu />

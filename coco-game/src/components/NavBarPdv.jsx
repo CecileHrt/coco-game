@@ -10,13 +10,17 @@ import {
 } from "react-icons/fa";
 import { FaEgg } from "react-icons/fa6";
 import { GiBirdHouse } from "react-icons/gi";
-import useInscriptionStore from "../stores/useInscriptionStore";
+import useInscriptionStore from "../stores/useInscriptionStore.js";
 
 export default function NavBarPdv() {
-  const [user, setUser] = useState();
+  // const [user, setUser] = useState(true);
+  // Synchroniser user avec le store
+  const user = useInscriptionStore((state) => state.user);
+  const setUser = useInscriptionStore((state) => state.setUser);
+  // console.log("user dans NavBarPdv : ", user);
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState(false);
-
   const toggleActive = () => {
     setActive(!active);
   };
@@ -53,7 +57,19 @@ export default function NavBarPdv() {
       {menuOpen && (
         <div className="opacity-100 z-50 absolute top-14 h-[100vh] right-0 w-full bg-[#ede1f6]/80 p-4">
           <ul className="flex flex-col p-4 box-white-shadow space-y-2 ml-auto max-w-[480px]  ">
-            {user && (
+            {user ? (
+              <NavLink
+                className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
+                to="/choix-coco"
+              >
+                <li className="flex items-center">
+                  <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
+                    <GiBirdHouse />
+                  </i>
+                  Choisir le profil
+                </li>
+              </NavLink>
+            ) : (
               <NavLink
                 className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] bg-[var(--color-mauve-pastel)]/70 transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
                 to="/inscription"
@@ -70,6 +86,10 @@ export default function NavBarPdv() {
             <NavLink
               className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
               to="/"
+              onClick={() => {
+                toggleMenu();
+                toggleActive();
+              }}
             >
               <li className="flex items-center ">
                 <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
@@ -97,6 +117,10 @@ export default function NavBarPdv() {
             <NavLink
               className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
               to="/coco-concept#avis"
+              onClick={() => {
+                toggleMenu();
+                toggleActive();
+              }}
             >
               <li className="flex items-center">
                 <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
@@ -108,18 +132,6 @@ export default function NavBarPdv() {
             {/*  si connecté alors  */}
             {user ? (
               <>
-                <NavLink
-                  className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-                  to="/choix-profil"
-                >
-                  <li className="flex items-center">
-                    <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
-                      <GiBirdHouse />
-                    </i>
-                    Choisir le profil
-                  </li>
-                </NavLink>
-
                 <NavLink
                   className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
                   onClick={handleLogout}

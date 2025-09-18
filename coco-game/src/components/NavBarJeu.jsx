@@ -5,26 +5,20 @@ import { GiBirdHouse } from "react-icons/gi";
 import { FaSignOutAlt, FaUser, FaChild, FaChartLine } from "react-icons/fa";
 // import {FaHome, FaCheck } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
-import useInscriptionStore from "../stores/useInscriptionStore";
+import useInscriptionStore from "../stores/useInscriptionStore.js";
 
 export default function NavBarJeu() {
-  const [active, setActive] = useState(false);
-  // Déconnexion
-  const clearUser = useInscriptionStore((state) => state.clearUser);
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    clearUser();
-    setMenuOpen(false);
-    navigate("/");
-  };
+  // const [user, setUser] = useState(true);
+  // Synchroniser user avec le store
+  const user = useInscriptionStore((state) => state.user);
+  const setUser = useInscriptionStore((state) => state.setUser);
+  // console.log("user dans navbJeu : ", user);
 
-  // Toggle class active
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [active, setActive] = useState(false);
   const toggleActive = () => {
     setActive(!active);
   };
-
-  // const [user, setUser] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -51,7 +45,7 @@ export default function NavBarJeu() {
           <ul className="flex flex-col p-4 box-white-shadow space-y-2 ml-auto max-w-[480px]  ">
             <NavLink
               className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/choix-profil"
+              to="/choix-coco"
             >
               <li className="flex items-center">
                 <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
