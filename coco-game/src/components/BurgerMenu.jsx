@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function BurgerMenu({ toggleMenu, toggleActive, active }) {
   return (
-    <div
+    <button
       className="relative w-11 h-8 cursor-pointer"
       onClick={() => {
         toggleActive();
@@ -25,6 +25,6 @@ export default function BurgerMenu({ toggleMenu, toggleActive, active }) {
               : "top-full -translate-y-full rotate-0"
           }`}
       />
-    </div>
+    </button>
   );
 }

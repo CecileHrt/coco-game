@@ -43,7 +43,7 @@ export default function NavBarPdv() {
       <div className="logotype">
         <img
           src="/logo-coco.webp"
-          alt="logo le l'application, poussin"
+          alt="logo de l'application, poussin"
           title="Logo Coco Game"
         />
         <strong>Coco Game</strong>

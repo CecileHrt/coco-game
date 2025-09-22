@@ -23,12 +23,21 @@ export default function NavBarJeu() {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  // Déconnexion
+  const clearUser = useInscriptionStore((state) => state.clearUser);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    clearUser();
+    setMenuOpen(false);
+    navigate("/");
+  };
   return (
     <header className="relative flex items-center justify-between p-2 bg-[var(--color-blanc-mauve)] lg:px-6">
       <div className="logotype">
         <img
           src="/logo-coco.webp"
-          alt="logo le l'application, poussin"
+          alt="logo de l'application, poussin"
           title="Logo Coco Game"
         />
         <strong>Coco Game</strong>
