@@ -73,6 +73,7 @@ export default function InscriptionMdp() {
     <>
       {/* FORM */}
       <form
+        data-testid="inscriptionMdp-form" // pour les tests
         className="mx-auto space-y-4 mb-4 md:mb-6 max-w-[450px] flex flex-col"
         onSubmit={handleSubmit(submit)}
       >
