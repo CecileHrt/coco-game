@@ -95,9 +95,12 @@ const signupMdp = async (req, res) => {
     const { password, rgpd } = req.body;
     const { token } = req.params;
     const hashPassword = bcrypt.hashSync(password, 10);
-    // console.log("token reçu :", token, "et +", req.body);
+    console.log("token reçu :", token, "et +", req.body);
+    console.log("token req.params :", req.params.token);
     const decoded = jsonwebtoken.verify(token, process.env.SECRET_KEY);
+    console.log("token décodé :", decoded);
     const tempUser = await TempUser.findOne({ mail: decoded.mail });
+    console.log("tempUser trouvé :", tempUser);
     const newUser = new User({
       mail: tempUser.mail,
       password: hashPassword,
@@ -105,6 +108,7 @@ const signupMdp = async (req, res) => {
     });
     await newUser.save();
     await TempUser.deleteOne({ mail: tempUser.mail });
+    console.log("Nouvel utilisateur créé :", newUser);
     // token et cookie de session
     const tokenUser = jsonwebtoken.sign({}, SECRET_KEY, {
       subject: newUser._id.toString(),
@@ -133,7 +137,7 @@ const addChildProfile = async (req, res) => {
   const { prenom, anniversaire, classe } = req.body;
   try {
     const adult = await User.findById(req.user._id);
-    const prenomExiste = adult.child.some(
+    const prenomExiste = adult.childList.some(
       (child) => child.prenom.toLowerCase() === prenom.toLowerCase()
     );
 
@@ -142,10 +146,10 @@ const addChildProfile = async (req, res) => {
     }
     //console.log("prénom unique :", prenomExiste);
 
-    adult.child.push({ prenom, anniversaire, classe });
+    adult.childList.push({ prenom, anniversaire, classe });
     await adult.save();
     // console.log("Utilisateur trouvé :", adult);
-    res.json({ message: "Enfant reçu", child: adult });
+    res.json({ message: "Enfant reçu", user: adult });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Une erreur est survenue." });
@@ -156,6 +160,7 @@ const addChildProfile = async (req, res) => {
 // Connexion Déconnexion
 // -- -- -- -- -- -- --
 
+//  Connexion
 const connexion = async (req, res) => {
   try {
     const { mail, password } = req.body;
@@ -233,43 +238,6 @@ const resetPassword = async (req, res) => {
   }
 };
 
-// const changePassword = async (req, res) => {
-//   console.log(req.body);
-//   // récupérer l'ID
-//   const { currentPassword, newPassword, userId } = req.body;
-//   try {
-//     // récupérer l'utilisateur connecté avec son ID
-//     const user = await User.findById(userId);
-
-//     // vérifier que le mot de passe actuel est bien celui de l'utilisateur connecté
-//     const isMatch = await bcrypt.compare(currentPassword, user.password);
-//     if (!isMatch) {
-//       return res.status(401).json({ message: "Mot de passe actuel incorrect" });
-//     }
-
-//     // vérifier que le nouveau mot de passe est différent de l'actuel
-//     const isSameAsOld = await bcrypt.compare(newPassword, user.password);
-//     if (isSameAsOld) {
-//       return res.status(401).json({
-//         message: "Le nouveau mot de passe doit être différent de l'ancien",
-//       });
-//     }
-
-//     // tout est OK, on hash le nouveau de mot de passe et on modifie l'utilisateur en BDD
-//     const hashed = await bcrypt.hash(newPassword, 10);
-//     user.password = hashed;
-//     await user.save();
-//     // envoi mail et feedback
-
-//     await validateNewPassword(user.email);
-//     return res
-//       .status(200)
-//       .json({ messageOk: "Mot de passe modifié avec succès" });
-//   } catch (error) {}
-
-//   // redirection page accueil côté front
-// };
-
 module.exports = {
   signupMail,
   signupMdp,
@@ -278,5 +246,4 @@ module.exports = {
   connexion,
   forgotPassword,
   resetPassword,
-  // changePassword,
 };

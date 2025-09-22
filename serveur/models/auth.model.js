@@ -46,19 +46,11 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       required: [true, "Vous devez accepter les termes et conditions"],
     },
-    child: [childSchema], // relier au schema enfant
+    childList: [childSchema], // relier au schema enfant
   },
   {
     timestamps: true,
   }
 );
-
-// Middleware pour hasher le mot de passe avant sauvegarde
-// userSchema.pre("save", async function (next) {
-//   if (this.isModified("password")) {
-//     this.password = await bcrypt.hash(this.password, 10);
-//   }
-//   next();
-// });
 
 module.exports = mongoose.model("User", userSchema);

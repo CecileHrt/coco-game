@@ -48,7 +48,7 @@ export default function InscriptionMdp() {
   });
 
   async function submit(values) {
-    // console.log(values);
+    console.log(values);
     try {
       const response = await signupMdp(values, token);
       // if (response.message === "Inscription réussie !") {

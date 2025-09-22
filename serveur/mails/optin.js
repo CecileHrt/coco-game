@@ -81,6 +81,7 @@ const sendForgotPasswordEmail = async (email, token) => {
   await transporter.sendMail(mailOptions);
 };
 
+// Confirmation du changement de mot de passe
 const validateNewPassword = async (email) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
