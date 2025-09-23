@@ -6,6 +6,7 @@ import { FaSignOutAlt, FaUser, FaChild, FaChartLine } from "react-icons/fa";
 // import {FaHome, FaCheck } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
 import useInscriptionStore from "../stores/useInscriptionStore.js";
+import { signout } from "../apis/auth.api.js";
 
 export default function NavBarJeu() {
   // const [user, setUser] = useState(true);
@@ -27,9 +28,11 @@ export default function NavBarJeu() {
   // Déconnexion
   const clearUser = useInscriptionStore((state) => state.clearUser);
   const navigate = useNavigate();
-  const handleLogout = () => {
+  const handleLogout = async () => {
     clearUser();
+    await signout();
     setMenuOpen(false);
+    toggleActive();
     navigate("/");
   };
   return (

@@ -8,6 +8,7 @@ const {
   forgotPassword,
   resetPassword,
   stayConnected,
+  signout,
 } = require("../controllers/auth.controller.js");
 const authentification = require("../middlewares/authMiddleware.js");
 
@@ -25,6 +26,9 @@ router.post("/resetPassword", resetPassword);
 // GET
 router.get("/verifyMail/:token", verifyMail);
 router.get("/isconnected", stayConnected);
+
+// DELETE
+router.delete("/deleteToken", signout);
 
 module.exports = router;
 // localhost:3000/auth

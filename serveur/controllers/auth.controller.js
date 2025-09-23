@@ -268,6 +268,16 @@ const stayConnected = async (req, res) => {
   }
 };
 
+//deconnexion
+const signout = async (req, res) => {
+  res.clearCookie("tokenUser", {
+    httpOnly: true,
+    secure: false,
+    sameSite: "Lax",
+  });
+  res.status(200).json({ message: "Déconnexion reussie" });
+};
+
 module.exports = {
   signupMail,
   signupMdp,
@@ -277,4 +287,5 @@ module.exports = {
   forgotPassword,
   resetPassword,
   stayConnected,
+  signout,
 };

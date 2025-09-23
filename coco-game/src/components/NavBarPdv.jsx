@@ -11,6 +11,7 @@ import {
 import { FaEgg } from "react-icons/fa6";
 import { GiBirdHouse } from "react-icons/gi";
 import useInscriptionStore from "../stores/useInscriptionStore.js";
+import { signout } from "../apis/auth.api.js";
 
 export default function NavBarPdv() {
   // const [user, setUser] = useState(true);
@@ -32,9 +33,11 @@ export default function NavBarPdv() {
   // Déconnexion
   const clearUser = useInscriptionStore((state) => state.clearUser);
   const navigate = useNavigate();
-  const handleLogout = () => {
+  const handleLogout = async () => {
     clearUser();
+    await signout();
     setMenuOpen(false);
+    toggleActive();
     navigate("/");
   };
 
