@@ -13,7 +13,7 @@ export default function ChildProfile({ prenom }) {
         alt="image de profil enfant fille"
         className="w-[100%] max-w-[100px]"
       />
-      <h2>{prenom}</h2>
+      <h2 className="capitalize">{prenom}</h2>
     </article>
   );
 }

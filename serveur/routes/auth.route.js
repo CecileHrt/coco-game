@@ -7,8 +7,7 @@ const {
   connexion,
   forgotPassword,
   resetPassword,
-  // changePassword
-  // confirmReinitMdp
+  stayConnected,
 } = require("../controllers/auth.controller.js");
 const authentification = require("../middlewares/authMiddleware.js");
 
@@ -25,6 +24,7 @@ router.post("/resetPassword", resetPassword);
 
 // GET
 router.get("/verifyMail/:token", verifyMail);
+router.get("/isconnected", stayConnected);
 
 module.exports = router;
 // localhost:3000/auth

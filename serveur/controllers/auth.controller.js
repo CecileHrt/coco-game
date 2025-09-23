@@ -30,7 +30,7 @@ const signupMail = async (req, res) => {
     const user = await User.findOne({ mail });
     if (user) {
       await sendAccountAlreadyExistsEmail(mail);
-      console.log("email de réinitialisation envoyé à ", mail);
+      // console.log("email de réinitialisation envoyé à ", mail);
       return res.status(400).json({
         success: true, // pour éviter d'informer un potentiel attaquant
         message:
@@ -39,7 +39,7 @@ const signupMail = async (req, res) => {
     }
     const token = createTokenEmail(mail);
     await sendConfirmationEmail(mail, token);
-    console.log("email de confirmation envoyé à ", mail);
+    // console.log("email de confirmation envoyé à ", mail);
     const tempUser = new TempUser({
       mail,
       token,
@@ -95,12 +95,12 @@ const signupMdp = async (req, res) => {
     const { password, rgpd } = req.body;
     const { token } = req.params;
     const hashPassword = bcrypt.hashSync(password, 10);
-    console.log("token reçu :", token, "et +", req.body);
-    console.log("token req.params :", req.params.token);
+    // console.log("token reçu :", token, "et +", req.body);
+    // console.log("token req.params :", req.params.token);
     const decoded = jsonwebtoken.verify(token, process.env.SECRET_KEY);
-    console.log("token décodé :", decoded);
+    // console.log("token décodé :", decoded);
     const tempUser = await TempUser.findOne({ mail: decoded.mail });
-    console.log("tempUser trouvé :", tempUser);
+    // console.log("tempUser trouvé :", tempUser);
     const newUser = new User({
       mail: tempUser.mail,
       password: hashPassword,
@@ -108,7 +108,7 @@ const signupMdp = async (req, res) => {
     });
     await newUser.save();
     await TempUser.deleteOne({ mail: tempUser.mail });
-    console.log("Nouvel utilisateur créé :", newUser);
+    // console.log("Nouvel utilisateur créé :", newUser);
     // token et cookie de session
     const tokenUser = jsonwebtoken.sign({}, SECRET_KEY, {
       subject: newUser._id.toString(),
@@ -118,6 +118,7 @@ const signupMdp = async (req, res) => {
     res.cookie("tokenUser", tokenUser, {
       httpOnly: true,
       secure: false,
+      sameSite: "Lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -185,6 +186,7 @@ const connexion = async (req, res) => {
     res.cookie("tokenUser", tokenUser, {
       httpOnly: true,
       secure: false, // à passer à true en production avec HTTPS
+      sameSite: "Lax", // autorise la traversée des url
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -200,7 +202,7 @@ const connexion = async (req, res) => {
 // Mot de passe oublié 1 : envoyer le lien de réinitialisation
 const forgotPassword = async (req, res) => {
   const { mail } = req.body;
-  console.log("controller", req.body);
+  // console.log("controller", req.body);
   try {
     const user = await User.findOne({ mail });
     if (user) {
@@ -222,11 +224,11 @@ const forgotPassword = async (req, res) => {
 // Mot de passe oublié 2 : réinitialiser le mot de passe
 const resetPassword = async (req, res) => {
   const { password, token } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   try {
     const decoded = jsonwebtoken.verify(token, process.env.SECRET_KEY);
     const user = await User.findOne({ mail: decoded.mail });
-    console.log("user trouvé", user);
+    // console.log("user trouvé", user);
     const hashedPassword = await bcrypt.hash(password, 10);
     user.password = hashedPassword;
     user.resetToken = null;
@@ -238,6 +240,34 @@ const resetPassword = async (req, res) => {
   }
 };
 
+// Loader pour rester connecté
+const stayConnected = async (req, res) => {
+  const { tokenUser } = req.cookies; // rechercher le token enregistré dans les cookies
+  if (tokenUser) {
+    try {
+      const decoded = jsonwebtoken.verify(tokenUser, SECRET_KEY);
+      // console.log("tokenUser décodé dans stayConnected :", decoded);
+      const userIsConnected = await User.findOne({
+        // rechercher par l'id ou par le mail
+        $or: [
+          { _id: decoded.sub }, //sub = subject = id de l'utilisateur
+          { mail: decoded.mail },
+        ],
+      });
+      if (userIsConnected) {
+        res.status(200).json(userIsConnected);
+      } else {
+        res.status(400).json(null);
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(400).json(null);
+    }
+  } else {
+    res.status(400).json(null);
+  }
+};
+
 module.exports = {
   signupMail,
   signupMdp,
@@ -246,4 +276,5 @@ module.exports = {
   connexion,
   forgotPassword,
   resetPassword,
+  stayConnected,
 };

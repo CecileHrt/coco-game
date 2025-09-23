@@ -1,8 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Page404 from "./pagesAdulte/Page404";
+import { authLoader } from "./loaders/authLoader";
 import UserConnected from "./protectedRoutes/UserConnected";
 import UserNotConnected from "./protectedRoutes/UserNotConnected";
+import AuthProviderZustand from "./stores/AuthProviderZustand";
 // Pages Adultes
 import CocoConcept from "./pagesAdulte/CocoConcept";
 import Preferences from "./pagesAdulte/Preferences";
@@ -26,8 +28,13 @@ import ChoixCoco from "./pagesEnfant/ChoixCoco";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <AuthProviderZustand>
+        <App />
+      </AuthProviderZustand>
+    ),
     errorElement: <Page404 />,
+    loader: authLoader,
     children: [
       {
         index: true,

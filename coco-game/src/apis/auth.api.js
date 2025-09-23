@@ -58,9 +58,9 @@ export const signupMdp = async (values, token) => {
         credentials: "include",
       }
     );
-    console.log("response dans signupMdp", response);
+    // console.log("response dans signupMdp", response);
     const userConnected = await response.json();
-    console.log("userConnected dans signupMdp", userConnected);
+    // console.log("userConnected dans signupMdp", userConnected);
     return userConnected;
   } catch (error) {
     console.log(error);
@@ -118,7 +118,7 @@ export const connexion = async (values) => {
 
 // Mot de passe oublié
 export async function forgotPassword(values) {
-  console.log("api", values);
+  // console.log("api", values);
   try {
     const response = await fetch(`${BASE_URL}/auth/forgotPassword`, {
       method: "POST",
@@ -143,6 +143,25 @@ export async function resetPassword(values) {
       },
       body: JSON.stringify(values),
     });
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// Sauvegarder la connexion
+export async function stayConnected() {
+  try {
+    const response = await fetch(`${BASE_URL}/auth/isconnected`, {
+      method: "GET",
+      credentials: "include",
+    });
+    if (response.ok) {
+      const userConnected = await response.json();
+      return userConnected;
+    } else {
+      return null;
+    }
     return await response.json();
   } catch (error) {
     console.log(error);
