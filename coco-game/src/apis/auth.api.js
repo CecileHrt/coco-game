@@ -156,13 +156,13 @@ export async function stayConnected() {
       method: "GET",
       credentials: "include",
     });
-    if (response.ok) {
-      const userConnected = await response.json();
-      return userConnected;
-    } else {
+
+    if (!response.ok) {
       return null;
     }
-    return await response.json();
+
+    const userConnected = await response.json();
+    return userConnected;
   } catch (error) {
     console.log(error);
   }

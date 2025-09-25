@@ -37,7 +37,7 @@ describe("InscriptionMdp", () => {
     const form = screen.getByTestId("inscriptionMdp-form"); // nécéssite l'ajout préablable d'un attribut dans le form
     fireEvent.submit(form);
 
-    // Afficher la notficiation d'erreur correspondance des mots de passe
+    // Afficher la notificiation d'erreur correspondance des mots de passe
     expect(
       await screen.findByText(/Les mots de passe ne correspondent pas/i)
     ).toBeInTheDocument();
