@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import useInscriptionStore from "./stores/useInscriptionStore";
 
 function App() {
+  // LOADER
   const data = useLoaderData(); // contient { user }
   const setUser = useInscriptionStore((state) => state.setUser);
 
