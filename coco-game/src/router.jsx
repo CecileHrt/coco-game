@@ -4,7 +4,7 @@ import Page404 from "./pagesAdulte/Page404";
 import { authLoader } from "./loaders/authLoader";
 import UserConnected from "./protectedRoutes/UserConnected";
 import UserNotConnected from "./protectedRoutes/UserNotConnected";
-import AuthProviderZustand from "./stores/AuthProviderZustand";
+// import AuthProviderZustand from "./stores/ex.AuthProviderZustand";
 // Pages Adultes
 import CocoConcept from "./pagesAdulte/CocoConcept";
 import Preferences from "./pagesAdulte/Preferences";
@@ -29,20 +29,16 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <AuthProviderZustand>
-        <App />
-      </AuthProviderZustand>
+      // <AuthProviderZustand>
+      <App />
+      // </AuthProviderZustand>
     ),
     errorElement: <Page404 />,
-    loader: authLoader,
+    loader: authLoader, // récupérer user avant le rendu
     children: [
       {
         index: true,
-        element: (
-          // <UserNotConnected>
-          <CocoConcept />
-          // </UserNotConnected>
-        ),
+        element: <CocoConcept />,
       },
       {
         path: "/edit-preferences",
@@ -59,7 +55,7 @@ export const router = createBrowserRouter([
           <UserConnected>
             <Preferences />
           </UserConnected>
-        ), // A modifier - <UserConnected>
+        ), // A modifier
       },
       {
         path: "/mon-compte",

@@ -3,7 +3,7 @@ import useInscriptionStore from "../stores/useInscriptionStore";
 
 export default function ChildProfile({ prenom }) {
   const user = useInscriptionStore((state) => state.user);
-  console.log("child depuis ChildProfile", user.child);
+  // console.log("child depuis ChildProfile", user.child);
 
   return (
     <article className="w-[40%] bg-[var(--color-mauve-pastel)] shadow-mauve rounded-sm p-4 mx-2 my-3 text-center">

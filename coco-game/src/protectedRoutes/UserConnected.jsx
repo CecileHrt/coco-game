@@ -7,10 +7,12 @@ export default function UserConnected({ children }) {
   const { user, loading, checkedAuth, fetchUser } = useInscriptionStore();
 
   useEffect(() => {
-    fetchUser();
-  }, [fetchUser]);
+    if (!checkedAuth) {
+      fetchUser();
+    }
+  }, [checkedAuth, fetchUser]);
 
-  if (loading && !checkedAuth) {
+  if (!checkedAuth || loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <RiseLoader color="#b031d7" />
@@ -18,7 +20,7 @@ export default function UserConnected({ children }) {
     );
   }
 
-  if (checkedAuth && !user) {
+  if (!user) {
     return <Navigate to="/connexion" replace />;
   }
 

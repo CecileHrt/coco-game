@@ -131,7 +131,7 @@ export default function NavBarJeu() {
 
             <NavLink
               className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/coco-concept"
+              to="/"
             >
               <li className="flex items-center ml-6">Accueil</li>
             </NavLink>

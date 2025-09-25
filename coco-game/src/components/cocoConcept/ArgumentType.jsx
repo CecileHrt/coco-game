@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaStar } from "react-icons/fa";
 
-export default function ArgumentType({ titre, texte }) {
+export default function ArgumentType({ titre, texte, index }) {
   // console.log("récupération des infos", { titre });
 
   const [anim, setAnim] = useState(false);
+  const ref = useRef(null); // animer le 1er argument lorsqu'il apparait à l'écran
 
   const ouverture = (e) => {
     // console.log("Type d'événement :", e.type);
@@ -13,13 +14,29 @@ export default function ArgumentType({ titre, texte }) {
   };
 
   useEffect(() => {
-    // console.log("état:", anim);
-  }, [anim]);
+    if (index !== 0) return; // seulement pour le 1er
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            ouverture();
+            observer.disconnect(); // déclenché une seule fois
+          }
+        });
+      },
+      { threshold: 0.5 } // 50% visible
+    );
+
+    if (ref.current) observer.observe(ref.current);
+
+    return () => observer.disconnect();
+  }, [index]);
 
   return (
     <>
       <div
-        // onMouseEnter={ouverture}
+        ref={ref}
         onClick={ouverture}
         className="arguments-pdv transition-all duration-300 ease-in-out cursor-pointer mb-2 md:mb-6 hover:bg-[var(--color-mauve-pastel)] p-1 rounded"
       >

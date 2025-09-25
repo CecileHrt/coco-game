@@ -1,9 +1,19 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet, useLoaderData } from "react-router-dom";
 import AdaptativeMode from "./AdaptativeMode";
 import { Toaster } from "react-hot-toast";
+import useInscriptionStore from "./stores/useInscriptionStore";
 
 function App() {
+  const data = useLoaderData(); // contient { user }
+  const setUser = useInscriptionStore((state) => state.setUser);
+
+  useEffect(() => {
+    if (data?.user) {
+      setUser(data.user); // hydrate le store avant le rendu des routes protégées
+    }
+  }, [data, setUser]);
+
   return (
     <>
       <AdaptativeMode>

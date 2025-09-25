@@ -200,10 +200,10 @@ h2 {
 
 /*  - - Boutons - -  */
 /*  - - Boutons - -  */
-button:focus,
+/* button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+  outline: 1px auto -webkit-focus-ring-color;
+} */
 
 /* Btn jaune sans taille */
 .btn-jaune {

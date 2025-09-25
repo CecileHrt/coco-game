@@ -251,7 +251,7 @@ export default function CocoConcept() {
                 </h3>
                 {/* arguments enfant */}
                 {ListeEnfant.map((arg, index) => (
-                  <ArgumentType key={index} {...arg} />
+                  <ArgumentType key={index} index={index} {...arg} />
                 ))}
               </div>
               <img
@@ -280,7 +280,8 @@ export default function CocoConcept() {
                 </h3>
                 {/* arguments adulte */}
                 {ListeAdulte.map((arg, index) => (
-                  <ArgumentType key={index} {...arg} />
+                  // <ArgumentType key={index} {...arg} />
+                  <ArgumentType key={index} index={index} {...arg} />
                 ))}
               </div>
             </article>

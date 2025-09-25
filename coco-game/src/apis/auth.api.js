@@ -168,6 +168,7 @@ export async function stayConnected() {
   }
 }
 
+// Déconnexion
 export async function signout() {
   await fetch(`${BASE_URL}/auth/deleteToken`, {
     method: "DELETE",

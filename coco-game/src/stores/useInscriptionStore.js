@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 
 const useInscriptionStore = create((set) => ({
   // user
@@ -8,6 +7,7 @@ const useInscriptionStore = create((set) => ({
   // état de chargement et erreurs globales
   loading: false,
   error: null,
+  checkedAuth: false,
 
   // Vérifie si un user est connecté (via cookie)
   fetchUser: async () => {
@@ -17,7 +17,7 @@ const useInscriptionStore = create((set) => ({
       set({
         user: userConnected,
         loading: false,
-        checkedAuth: true, // 👈 on marque que c’est fini
+        checkedAuth: true, //  on marque que c’est fini
       });
     } catch (err) {
       set({
@@ -33,7 +33,7 @@ const useInscriptionStore = create((set) => ({
   setUser: async (user) => {
     try {
       set({ loading: true, error: null });
-      // ici tu pourrais faire un appel API si besoin
+      // ici faire un appel API si besoin
       // await fetch(...) etc.
       set({
         user: {
