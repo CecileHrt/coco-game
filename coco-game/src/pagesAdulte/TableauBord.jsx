@@ -6,8 +6,11 @@ import { FaChartLine, FaCheck, FaHeart } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
 import { BiSolidTimer } from "react-icons/bi";
 import AvisForm from "../forms/AvisForm.jsx";
+import useInscriptionStore from "../stores/useInscriptionStore.js";
 
 export default function TableauBord() {
+  const children = useInscriptionStore((state) => state.user.childList);
+  console.log(children);
   return (
     <>
       <NavBarJeu />

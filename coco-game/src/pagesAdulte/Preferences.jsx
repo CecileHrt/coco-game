@@ -10,8 +10,11 @@ import { IoNotifications, IoArrowUndo, IoCreate } from "react-icons/io5";
 import { FaX } from "react-icons/fa6";
 import SynthesisButton from "../components/preferences/SynthesisButton.jsx";
 import SwitchModel from "../components/SwitchModel.jsx";
+import useInscriptionStore from "../stores/useInscriptionStore.js";
 
 export default function Preferences() {
+  const children = useInscriptionStore((state) => state.user.childList);
+  console.log(children);
   return (
     <>
       <NavBarJeu />
@@ -87,7 +90,7 @@ export default function Preferences() {
             <article>
               <div className="flex items-center justify-between space-x-4 mb-1">
                 <h3>Niveau scolaire :</h3>
-                <p className="font-[800]"> CE1</p>
+                <p className="font-[800]"> {children[0].classe}</p>
               </div>
               <div className="flex justify-between ">
                 <p className="text-xs text-gray-600 italic max-w-[90%] flex-1 md:text-sm">

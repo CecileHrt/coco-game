@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import BurgerMenu from "../components/BurgerMenu";
 import { GiBirdHouse } from "react-icons/gi";
-import { FaSignOutAlt, FaUser, FaChild, FaChartLine } from "react-icons/fa";
+import {
+  FaSignOutAlt,
+  FaUser,
+  FaChild,
+  FaChartLine,
+  FaSignInAlt,
+  FaHome,
+  FaEgg,
+} from "react-icons/fa";
 // import {FaHome, FaCheck } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
 import useInscriptionStore from "../stores/useInscriptionStore.js";
@@ -53,105 +61,161 @@ export default function NavBarJeu() {
       />
 
       {menuOpen && (
-        <div className="opacity-100 z-50 absolute top-14 h-[100vh] right-0 w-full bg-[#ede1f6]/80 p-4">
-          <ul className="flex flex-col p-4 box-white-shadow space-y-2 ml-auto max-w-[480px]  ">
-            <NavLink
-              className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/choix-coco"
-            >
-              <li className="flex items-center">
-                <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
-                  <GiBirdHouse />
-                </i>
-                Choisir le profil
-              </li>
-            </NavLink>
+        <div className="fixed inset-0 z-50">
+          {/* BG  */}
 
-            <NavLink
-              className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/tableau-de-bord"
-            >
-              <li className="flex items-center">
-                <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
-                  <FaChartLine />
-                </i>
-                Tableau de bord
-              </li>
-            </NavLink>
+          <div
+            className="absolute inset-0 bg-[#ede1f6]/80"
+            onClick={() => {
+              toggleMenu();
+              toggleActive();
+            }}
+          ></div>
 
-            <NavLink
-              className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/mon-compte"
-            >
-              <li className="flex items-center">
-                <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
-                  <FaUser />
-                </i>
-                Compte adulte
-              </li>
-            </NavLink>
+          <nav className="absolute top-14 right-0 w-full max-w-[480px] h-[calc(100vh-3.5rem)] overflow-y-auto p-4">
+            <ul className="flex flex-col p-4 box-white-shadow space-y-2 ml-auto max-w-[480px]  ">
+              {user ? (
+                <>
+                  <NavLink
+                    className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
+                    to="/choix-coco"
+                  >
+                    <li className="flex items-center">
+                      <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
+                        <GiBirdHouse />
+                      </i>
+                      Choisir le profil
+                    </li>
+                  </NavLink>
 
-            <NavLink
-              className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/profil-enfant"
-            >
-              <li className="flex items-center">
-                <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
-                  <FaChild />
-                </i>
-                Profil enfant
-              </li>
-            </NavLink>
+                  <NavLink
+                    className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
+                    to="/tableau-de-bord"
+                  >
+                    <li className="flex items-center">
+                      <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
+                        <FaChartLine />
+                      </i>
+                      Tableau de bord
+                    </li>
+                  </NavLink>
 
-            <NavLink
-              className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/preferences"
-            >
-              <li className="flex items-center">
-                <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
-                  <IoSettingsSharp />
-                </i>
-                Préférences
-              </li>
-            </NavLink>
+                  <NavLink
+                    className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
+                    to="/mon-compte"
+                  >
+                    <li className="flex items-center">
+                      <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
+                        <FaUser />
+                      </i>
+                      Compte adulte
+                    </li>
+                  </NavLink>
 
-            <NavLink
-              className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              onClick={handleLogout}
-            >
-              <li className="flex items-center">
-                <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
-                  <FaSignOutAlt />
-                </i>
-                Se déconnecter
-              </li>
-            </NavLink>
+                  <NavLink
+                    className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
+                    to="/profil-enfant"
+                  >
+                    <li className="flex items-center">
+                      <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
+                        <FaChild />
+                      </i>
+                      Profil enfant
+                    </li>
+                  </NavLink>
 
-            <hr className="w-full my-2 h-0.5 bg-[var(--color-mauve-pastel)] block border-0" />
+                  <NavLink
+                    className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
+                    to="/preferences"
+                  >
+                    <li className="flex items-center">
+                      <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
+                        <IoSettingsSharp />
+                      </i>
+                      Préférences
+                    </li>
+                  </NavLink>
 
-            <NavLink
-              className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/"
-            >
-              <li className="flex items-center ml-6">Accueil</li>
-            </NavLink>
+                  <NavLink
+                    className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
+                    onClick={handleLogout}
+                  >
+                    <li className="flex items-center">
+                      <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
+                        <FaSignOutAlt />
+                      </i>
+                      Se déconnecter
+                    </li>
+                  </NavLink>
+                </>
+              ) : (
+                <>
+                  <NavLink
+                    className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] bg-[var(--color-mauve-pastel)]/70 transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
+                    to="/inscription"
+                  >
+                    <li className="flex items-center">
+                      <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
+                        <FaEgg />
+                      </i>
+                      Commencer une aventure
+                    </li>
+                  </NavLink>
+                  <NavLink
+                    className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
+                    to="/"
+                    onClick={() => {
+                      toggleMenu();
+                      toggleActive();
+                    }}
+                  >
+                    <li className="flex items-center ">
+                      <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
+                        <FaHome />
+                      </i>
+                      Accueil
+                    </li>
+                  </NavLink>
+                  <NavLink
+                    className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
+                    to="/connexion"
+                  >
+                    <li className="flex items-center">
+                      <i className="text-[var(--color-mauve-omb)] mr-2 mb-0.5">
+                        <FaSignInAlt />
+                      </i>
+                      Se connecter
+                    </li>
+                  </NavLink>
+                </>
+              )}
+              <hr className="w-full my-2 h-0.5 bg-[var(--color-mauve-pastel)] block border-0" />
+              {user && (
+                <NavLink
+                  className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
+                  to="/"
+                >
+                  <li className="flex items-center ml-6">Accueil</li>
+                </NavLink>
+              )}
 
-            <NavLink
-              className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/mentions-legales"
-            >
-              <li className="flex items-center ml-6">Mentions légales</li>
-            </NavLink>
+              <NavLink
+                className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
+                to="/mentions-legales"
+              >
+                <li className="flex items-center ml-6">Mentions légales</li>
+              </NavLink>
 
-            <NavLink
-              className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
-              to="/politique-confidentialite"
-            >
-              <li className="flex items-center ml-6">
-                Données personnelles et Cookies
-              </li>
-            </NavLink>
-          </ul>
+              <NavLink
+                className={`sm:text-xl xl:text-2xl hover:font-[600] hover:text-[var(--color-mauve-omb)] transition-all duration-500 ease-in-out hover:bg-[var(--color-mauve-pastel)] rounded w-full p-2 `}
+                to="/politique-confidentialite"
+              >
+                <li className="flex items-center ml-6">
+                  Données personnelles et Cookies
+                </li>
+              </NavLink>
+            </ul>
+          </nav>
         </div>
       )}
     </header>

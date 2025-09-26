@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function BurgerMenu({ toggleMenu, toggleActive, active }) {
   return (
     <button
-      className="relative w-11 h-8 cursor-pointer"
+      className="relative w-11 h-8 cursor-pointer z-99"
       onClick={() => {
         toggleActive();
         toggleMenu();

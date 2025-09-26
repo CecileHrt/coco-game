@@ -8,28 +8,35 @@ import ArgumentType from "../components/cocoConcept/ArgumentType";
 import Carousel from "../components/cocoConcept/Carousel";
 import AvisType from "../components/cocoConcept/AvisType";
 import AvisForm from "../forms/AvisForm";
+import useInscriptionStore from "../stores/useInscriptionStore";
 
 export default function CocoConcept() {
-  const [searchParams] = useSearchParams(); // récupère les search params
-  const data = searchParams.get("url"); // ici on récupère la valeur du param "url"
-  // console.log("data", data); // affiche la valeur du param "url"
+  // ajouter ?url=avis dans l’URL.
+  // const [searchParams] = useSearchParams(); // récupère les search params
+  // const data = searchParams.get("url"); // ici on récupère la valeur du param "url"
+  // // console.log("data", data); // affiche la valeur du param "url"
+  // scroll behavior avec useParam : ajouter ?url=avis dans l’URL.
+  // useEffect(() => {
+  //   if (data) {
+  //     const element = document.getElementById(data);
+  //     if (element) {
+  //       element.scrollIntoView({ behavior: "smooth", block: "start" });
+  //     }
+  //   }
+  // }, [data]); // dépendance sur data pour réagir aux changements
 
-  useEffect(() => {
-    if (data) {
-      const element = document.getElementById(data);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-  }, [data]); // dépendance sur data pour réagir aux changements
+  const { user } = useInscriptionStore();
 
+  // Section 2
   const argumentsList = useConceptStore((state) => state.argumentsList);
   const ListeEnfant = argumentsList.filter((arg) => arg.cible === "enfants");
   const ListeAdulte = argumentsList.filter((arg) => arg.cible === "adultes");
   // console.log("liste adulte", ListeAdulte);  console.log("liste enf", ListeEnfant);
 
+  // Section 3
   const videoRef = useRef(null);
 
+  // Section 5
   const { avis, setAvis } = useConceptStore();
   const [afficherAvis, setAfficherAvis] = useState(false);
   const AfficherMasquer = () => {
@@ -37,6 +44,7 @@ export default function CocoConcept() {
   };
   const PlusAvis = afficherAvis ? avis.slice() : avis.slice(0, 4);
 
+  // Section 3 : gestion de la video
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -89,7 +97,6 @@ export default function CocoConcept() {
                 expérience éducative à la fois douce et engageante.
               </p>
               <img
-                // src="/a-propos/pere-et-fille-sur-la-tablette.webp"
                 src="/a-propos/pt-pere-et-fille-a-l-aide-de-la-tablette.jpg"
                 alt="Père et fille,jouent ensemble sur une tablette"
                 title="Père et fille,jouent ensemble sur une tablette"
@@ -102,12 +109,21 @@ export default function CocoConcept() {
                 Application éducative dédiée aux enfants
                 de&nbsp;4&nbsp;à&nbsp;10&nbsp;ans.
               </p>
-              <NavLink
-                to="/inscription"
-                className="cta text-lg my-10 px-2 py-2 md:text-2xl bg-[var(--color-bleu-canard)] text-[var(--color-blanc-mauve)] border-[var(--color-bleu-canard)] hover:bg-[var(--color-blanc-mauve)] hover:text-[var(--color-bleu-canard)]"
-              >
-                Commencer l'aventure
-              </NavLink>
+              {user ? (
+                <NavLink
+                  to="/choix-coco"
+                  className="cta text-lg my-10 px-2 py-2 md:text-2xl bg-[var(--color-bleu-canard)] text-[var(--color-blanc-mauve)] border-[var(--color-bleu-canard)] hover:bg-[var(--color-blanc-mauve)] hover:text-[var(--color-bleu-canard)]"
+                >
+                  Choisir le profil
+                </NavLink>
+              ) : (
+                <NavLink
+                  to="/inscription"
+                  className="cta text-lg my-10 px-2 py-2 md:text-2xl bg-[var(--color-bleu-canard)] text-[var(--color-blanc-mauve)] border-[var(--color-bleu-canard)] hover:bg-[var(--color-blanc-mauve)] hover:text-[var(--color-bleu-canard)]"
+                >
+                  Commencer l'aventure
+                </NavLink>
+              )}
             </div>
             <img
               src="/a-propos/gd-pere-et-fille-tablette.jpg"
@@ -466,6 +482,8 @@ export default function CocoConcept() {
             </NavLink>
           </div>
         </section>
+
+        {/* Footer */}
         <footer className="p-4 flex flex-col items-center justify-center space-x-2 bg-[var(--color-bleu-canard)]">
           <div className="logotype pl-2">
             <img
