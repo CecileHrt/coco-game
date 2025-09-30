@@ -13,7 +13,11 @@ const sendConfirmationEmail = async (mail, token) => {
     html: `<p>Bienvenue sur notre application Coco Game ! </p>
     <br/>
     <p>Cliquez sur le lien suivant pour confirmer votre email et poursuivre l'inscription : 
-    <a href="${process.env.API_URL}/auth/verifyMail/${token}" style="color: #6C63FF; font-weight: bold;">
+    <a href="${
+      process.env.MODE === "development"
+        ? process.env.SENDGRID_API_KEY_URL
+        : process.env.DEPLOY_BACK_URL
+    }/auth/verifyMail/${token}" style="color: #6C63FF; font-weight: bold;">
     Poursuivre l'inscription</a></p>
     <br/>
     <p>Ce lien est valable <span style="font-weight: bold;">15 minutes </span>, au delà de ce temps vous devrez recommencer le processus d'inscription. </p>
@@ -44,7 +48,11 @@ const sendAccountAlreadyExistsEmail = async (mail) => {
        <br/>
       <p>Votre compte existe déjà. Vous pouvez vous connecter depuis le lien ci-dessous :</p>
       <p>
-        <a href="${process.env.CLIENT_URL}/login" style="color: #6C63FF; font-weight: bold;">
+        <a href=${
+          process.env.MODE === "development"
+            ? process.env.CLIENT_URL
+            : process.env.DEPLOY_FRONT_URL
+        }/login" style="color: #6C63FF; font-weight: bold;">
           Se connecter à Coco Game
         </a>
       </p>
@@ -79,7 +87,11 @@ const sendForgotPasswordEmail = async (mail, token) => {
        <br/>
       <p>Vous pouvez réinitialiser votre mot de passe depuis le lien ci-dessous :</p>
       <p>
-        <a href="${process.env.CLIENT_URL}/reinitialiser-mot-de-passe/${token}" style="color: #6C63FF; font-weight: bold;">
+        <a href=""${
+          process.env.MODE === "development"
+            ? process.env.CLIENT_URL
+            : process.env.DEPLOY_FRONT_URL
+        }/reinitialiser-mot-de-passe/${token}" style="color: #6C63FF; font-weight: bold;">
           Réinitialiser mon mot de passe
         </a>
       </p>
@@ -114,7 +126,11 @@ const validateNewPassword = async (mail) => {
       <p>Bonjour,</p>
        <br/>
       <p>Votre mot de passe a bien été modifié. Vous pouvez maintenant vous connecter :</p>
-         <a href="${process.env.CLIENT_URL}/connexion" style="color: #6C63FF; font-weight: bold;">
+         <a href="${
+           process.env.MODE === "development"
+             ? process.env.CLIENT_URL
+             : process.env.DEPLOY_FRONT_URL
+         }/connexion" style="color: #6C63FF; font-weight: bold;">
           Se connecter à Coco Game
         </a>
       </p>

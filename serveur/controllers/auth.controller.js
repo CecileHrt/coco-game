@@ -6,7 +6,7 @@ const {
   sendAccountAlreadyExistsEmail,
   sendForgotPasswordEmail,
   validateNewPassword,
-} = require("../mails/optin.js");
+} = require("../mails/optinSendgrid.js");
 const TempUser = require("../models/tempUser.model.js");
 
 const SECRET_KEY = process.env.SECRET_KEY;
@@ -65,11 +65,19 @@ const verifyMail = async (req, res) => {
     const tempUser = await TempUser.findOne({ mail: decoded.mail, token });
     if (!tempUser) {
       return res.redirect(
-        `${process.env.CLIENT_URL}/inscription?message=error`
+        `${
+          process.env.MODE === "development"
+            ? process.env.CLIENT_URL
+            : process.env.DEPLOY_FRONT_URL
+        }/inscription?message=error`
       );
     }
     res.redirect(
-      `${process.env.CLIENT_URL}/inscription/finaliser-inscription?message=success&token=${token}`
+      `${
+        process.env.MODE === "development"
+          ? process.env.CLIENT_URL
+          : process.env.DEPLOY_FRONT_URL
+      }/inscription/finaliser-inscription?message=success&token=${token}`
     );
   } catch (error) {
     if (
@@ -81,7 +89,11 @@ const verifyMail = async (req, res) => {
         await tempUser.deleteOne({ token });
       }
       return res.redirect(
-        `${process.env.CLIENT_URL}/inscription?message=invalid-token`
+        `${
+          process.env.MODE === "development"
+            ? process.env.CLIENT_URL
+            : process.env.DEPLOY_FRONT_URL
+        }/inscription?message=invalid-token`
       );
     }
     console.log(error);
@@ -117,8 +129,8 @@ const signupMdp = async (req, res) => {
     });
     res.cookie("tokenUser", tokenUser, {
       httpOnly: true,
-      secure: false,
-      sameSite: "Lax",
+      secure: process.env.MODE === "development" ? false : true,
+      sameSite: process.env.MODE === "development" ? "Lax" : "Strict",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -187,8 +199,8 @@ const connexion = async (req, res) => {
 
     res.cookie("tokenUser", tokenUser, {
       httpOnly: true,
-      secure: false, // à passer à true en production avec HTTPS
-      sameSite: "Lax", // autorise la traversée des url
+      secure: process.env.MODE === "development" ? false : true, // à passer à true en production avec HTTPS
+      sameSite: process.env.MODE === "development" ? "Lax" : "Strict", // autorise la traversée des url
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -274,8 +286,8 @@ const stayConnected = async (req, res) => {
 const signout = async (req, res) => {
   res.clearCookie("tokenUser", {
     httpOnly: true,
-    secure: false,
-    sameSite: "Lax",
+    secure: process.env.MODE === "development" ? false : true,
+    sameSite: process.env.MODE === "development" ? "Lax" : "Strict",
   });
   res.status(200).json({ message: "Déconnexion reussie" });
 };

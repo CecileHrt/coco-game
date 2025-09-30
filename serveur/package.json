@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "serveur.js",
   "scripts": {
-    "start": "nodemon serveur.js",
+    "dev": "nodemon serveur.js",
+    "start": "node serveur.js",
     "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles"
   },
   "jest": {
