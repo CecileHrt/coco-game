@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { stayConnected } from "../apis/auth.api";
 
 const useInscriptionStore = create((set) => ({
   // user
@@ -9,30 +10,30 @@ const useInscriptionStore = create((set) => ({
   error: null,
   checkedAuth: false,
 
-  // Vérifie si un user est connecté (via cookie)
+  // Vérifie si un user est connecté (via cookie ou token)
   fetchUser: async () => {
     set({ loading: true, error: null });
     try {
       const userConnected = await stayConnected();
-      set({
-        user: userConnected,
+
+      set((state) => ({
+        user: userConnected || state.user, // ✅ garde l’existant si null
         loading: false,
-        checkedAuth: true, //  on marque que c’est fini
-      });
+        checkedAuth: true, // marquer qu’on a terminé
+      }));
     } catch (err) {
-      set({
-        user: null,
+      set((state) => ({
+        user: state.user, // ✅ ne pas écraser si déjà défini
         error: err.message || "Erreur inconnue",
         loading: false,
         checkedAuth: true,
-      });
+      }));
     }
   },
 
   // setUser avec gestion de loading simulée
   setUser: async (user) => {
     try {
-      set({ loading: true, error: null });
       // ici faire un appel API si besoin
       // await fetch(...) etc.
       set({
@@ -41,6 +42,8 @@ const useInscriptionStore = create((set) => ({
           childList: user.childList || [],
         },
         loading: false,
+        error: null,
+        checkedAuth: true, // ✅ on sait qu’on a un user
       });
     } catch (err) {
       set({ error: err.message || "Erreur inconnue", loading: false });

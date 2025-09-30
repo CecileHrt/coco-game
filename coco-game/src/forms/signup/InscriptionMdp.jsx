@@ -52,9 +52,7 @@ export default function InscriptionMdp() {
     try {
       const response = await signupMdp(values, token);
       // if (response.message === "Inscription réussie !") {
-      //   setUser(response.user);
       if (response.user) {
-        console.log("arf", response.user);
         setUser(response.user); // stocke l'utilisateur
         reset(defaultValues);
         toast.success("Inscription réussie !");

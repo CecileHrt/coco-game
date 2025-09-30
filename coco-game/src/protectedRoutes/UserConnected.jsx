@@ -5,13 +5,13 @@ import useInscriptionStore from "../stores/useInscriptionStore";
 
 export default function UserConnected({ children }) {
   const { user, loading, checkedAuth, fetchUser } = useInscriptionStore();
-  console.log("arf encore", user);
 
   useEffect(() => {
-    if (!checkedAuth) {
+    //  ne fetch que si pas encore d’utilisateur ET pas encore vérifié
+    if (!checkedAuth && !user) {
       fetchUser();
     }
-  }, [checkedAuth, fetchUser]);
+  }, [checkedAuth, user, fetchUser]);
 
   if (!checkedAuth || loading) {
     return (
