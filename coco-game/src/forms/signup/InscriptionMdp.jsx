@@ -54,12 +54,15 @@ export default function InscriptionMdp() {
       // if (response.message === "Inscription réussie !") {
       //   setUser(response.user);
       if (response.user) {
+        console.log("arf", response.user);
         setUser(response.user); // stocke l'utilisateur
         reset(defaultValues);
         toast.success("Inscription réussie !");
-        navigate("/creer-profil-enfant");
+        // navigate("/creer-profil-enfant");
         // délai pour s'assurer que UserConnected voit le store mis à jour
-        // setTimeout(() => {navigate("/creer-profil-enfant");  }, 50);
+        setTimeout(() => {
+          navigate("/creer-profil-enfant");
+        }, 50);
       } else {
         toast.error(response.message);
       }

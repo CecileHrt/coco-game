@@ -8,6 +8,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { createProfile } from "../apis/auth.api.js";
 import useInscriptionStore from "../stores/useInscriptionStore";
+import { NavLink } from "react-router-dom";
 
 export default function CreationProfilEnf() {
   const addChildProfile = useInscriptionStore((state) => state.addChildProfile);
@@ -17,6 +18,7 @@ export default function CreationProfilEnf() {
     prenom: "",
     anniversaire: "",
     classe: "",
+    accParental: false,
     // image de profil
   };
 
@@ -35,6 +37,10 @@ export default function CreationProfilEnf() {
       .string()
       .required("Le champ est obligatoire")
       .oneOf(["MS", "GS", "CP", "CE1", "CE2", "CM1", "CM2"]),
+    accParental: yup
+      .boolean()
+      .oneOf([true], "Vous devez accepter les termes et conditions"),
+
     // image de profil
   });
 
@@ -92,7 +98,8 @@ export default function CreationProfilEnf() {
         <div className="box-white md:max-w-3xl md:mx-auto p-4 md:p-12 xl:max-w-6xl space-y-4 min-h-[70vh]">
           <p className="mb-4 md:text-xl md:mb-6">
             La date anniversaire et la classe fréquentée sont nécessaires pour
-            optimiser l’expérience de jeu.
+            optimiser l’expérience de jeu et optimiser des interactions avec le
+            compagnon.
           </p>
 
           {/* FORM */}
@@ -190,6 +197,40 @@ export default function CreationProfilEnf() {
               </p>
               {errors.classe && (
                 <p className="text-red-500">{errors.classe.message}</p>
+              )}
+            </div>
+
+            {/*  ACCORD PARENTAL */}
+            <div className="flex flex-col space-x-4 mb-2">
+              <label
+                htmlFor="accParental"
+                className="mt-4 mb-2 md:text-lg font-[700]"
+              >
+                Consentement d'une personne majeur :
+              </label>
+              <div className="flex items-start space-x-4 mb-2">
+                <input
+                  {...register("accParental")}
+                  type="checkbox"
+                  id="accParental"
+                  required
+                  className="bg-[var(--color-blanc-bleu)] mt-1 rounded md:text-lg"
+                />
+                <p className="text-sm md:text-lg mb-4 md:mb-6 ">
+                  En tant qu’adulte responsable, je consens à l’utilisation des
+                  données personnelles de l'enfant exclusivement pour optimiser
+                  son expérience utilisateur sur cette application, conformément
+                  à la{" "}
+                  <NavLink
+                    to="/politique-confidentialite"
+                    className="text-[var(--color-mauve-omb)] underline"
+                  >
+                    politique de confidentialité.
+                  </NavLink>
+                </p>
+              </div>
+              {errors.accParental && (
+                <p className="text-red-500">{errors.accParental.message}</p>
               )}
             </div>
 

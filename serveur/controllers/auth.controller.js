@@ -134,8 +134,8 @@ const signupMdp = async (req, res) => {
 
 // ajout d'un profil enfant
 const addChildProfile = async (req, res) => {
-  // console.log("Nouvel enfant reçu :", req.body);
-  const { prenom, anniversaire, classe } = req.body;
+  console.log("Nouvel enfant reçu :", req.body);
+  const { prenom, anniversaire, classe, accParental } = req.body;
   try {
     const adult = await User.findById(req.user._id);
     const prenomExiste = adult.childList.some(
@@ -147,10 +147,10 @@ const addChildProfile = async (req, res) => {
     }
     //console.log("prénom unique :", prenomExiste);
 
-    adult.childList.push({ prenom, anniversaire, classe });
+    adult.childList.push({ prenom, anniversaire, classe, accParental });
     await adult.save();
     // console.log("Utilisateur trouvé :", adult);
-    res.json({ message: "Enfant reçu", user: adult });
+    res.status(201).json({ message: "Enfant reçu", user: adult });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Une erreur est survenue." });
@@ -168,7 +168,9 @@ const connexion = async (req, res) => {
     // console.log("login appelée avec", req.body);
     const user = await User.findOne({ mail });
     if (!user) {
-      res.status(400).json({ message: "Email et/ou mot de passe incorrect" });
+      return res
+        .status(401)
+        .json({ message: "Email et/ou mot de passe incorrect" });
     }
     const isValid = await bcrypt.compare(password, user.password);
     if (!isValid) {

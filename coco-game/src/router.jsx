@@ -152,9 +152,9 @@ export const router = createBrowserRouter([
       {
         path: "/choix-coco",
         element: (
-          // <UserConnected>
-          <ChoixCoco />
-          // </UserConnected>
+          <UserConnected>
+            <ChoixCoco />
+          </UserConnected>
         ),
       },
       {

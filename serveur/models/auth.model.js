@@ -20,6 +20,10 @@ const childSchema = new mongoose.Schema(
       required: [true, "La classe est requise"],
       enum: ["MS", "GS", "CP", "CE1", "CE2", "CM1", "CM2"],
     },
+    accParental: {
+      type: Boolean,
+      required: [true, "Vous devez accepter les termes et conditions"],
+    },
   },
   {
     timestamps: true,

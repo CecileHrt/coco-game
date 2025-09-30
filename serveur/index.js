@@ -35,11 +35,11 @@ const routes = require("./routes");
 app.use(generalLimiter);
 app.use(routes);
 
-mongoose
-  .connect(config.mongoDb.uri)
-  .then(() => {
-    console.log("Connexion Mongo DB OK");
-  })
-  .catch((err) => console.log(err));
+if (process.env.NODE_ENV !== "test") {
+  mongoose
+    .connect(config.mongoDb.uri)
+    .then(() => console.log("Connexion Mongo DB OK"))
+    .catch((err) => console.log(err));
+}
 
-app.listen(3000);
+module.exports = app;

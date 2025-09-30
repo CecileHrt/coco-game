@@ -5,13 +5,15 @@ import FontTypeSwitch from "../components/preferences/FontTypeSwitch.jsx";
 import VoiceSwitch from "../components/preferences/VoiceSwitch.jsx";
 import { FaChartLine, FaCheck, FaEgg } from "react-icons/fa";
 import { BiSolidTimer } from "react-icons/bi";
-import { IoNotifications, IoArrowUndo, IoCreate } from "react-icons/io5";
-import { FaX } from "react-icons/fa6";
+import { IoNotifications } from "react-icons/io5";
 import SynthesisButton from "../components/preferences/SynthesisButton.jsx";
 import SwitchModel from "../components/SwitchModel.jsx";
 import { NavLink } from "react-router-dom";
+import useInscriptionStore from "../stores/useInscriptionStore.js";
 
 export default function ConfirmPreferences() {
+  const children = useInscriptionStore((state) => state.user.childList);
+  console.log(children);
   return (
     <>
       <NavBarJeu />
@@ -103,7 +105,7 @@ export default function ConfirmPreferences() {
             <article>
               <div className="flex items-center justify-between space-x-4 mb-1">
                 <h3>Niveau scolaire :</h3>
-                <p className="font-[800]"> CE1</p>
+                <p className="font-[800]"> {children[0].classe}</p>
               </div>
               <div className="flex justify-between ">
                 <p className="text-xs text-gray-600 italic max-w-[90%] flex-1 md:text-sm">

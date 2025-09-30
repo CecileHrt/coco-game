@@ -20,6 +20,7 @@ const loginLimiter = rateLimit({
   legacyHeaders: false,
   handler: (req, res, next, options) => {
     res.status(options.statusCode).json({
+      //status 429
       status: options.statusCode,
       message:
         "Trop de tentatives de connexion. Réessayez dans quelques minutes.",

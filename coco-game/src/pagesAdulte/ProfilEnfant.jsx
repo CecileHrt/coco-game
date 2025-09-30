@@ -1,7 +1,9 @@
+import { FaPlus } from "react-icons/fa";
 import NavBarJeu from "../components/NavBarJeu.jsx";
 import { FaEgg } from "react-icons/fa6";
 import { IoArrowUndo, IoCreate } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function ProfilEnfant() {
   return (
@@ -9,20 +11,31 @@ export default function ProfilEnfant() {
       <NavBarJeu />
       <main className="bg-linear-[160deg] p-2 from-[#FFD8FA] via-[#C3A3FF] to-[#8964C2] w-full min-h-screen">
         {/* BACK - EDIT */}
-        <div className="flex items-center justify-end space-x-1.5 md:max-w-3xl xl:max-w-6xl md:mx-auto">
-          <NavLink to="/tableau-de-bord" className="flex items-center">
-            <i className="text-3xl p-1 hover:text-[var(--color-mauve-omb)]">
-              <IoArrowUndo />
+        <div className="flex justify-between">
+          {/* Ajouter un enfant */}
+          <NavLink
+            to="/creer-profil-enfant"
+            className="flex items-center rounded hover:bg-[var(--color-mauve-omb)] bg-[var(--color-mauve-clair)]"
+          >
+            <i className="text-xl p-2">
+              <FaPlus />
             </i>
           </NavLink>
 
-          <NavLink to="/edit-profil-enfant" className="flex items-center">
-            <i className="text-3xl p-1 hover:text-[var(--color-mauve-omb)]">
-              <IoCreate className="text-2xl hover:text-[var(--color-mauve-omb)]" />
-            </i>
-          </NavLink>
+          <div className="flex items-center justify-end space-x-1.5 md:max-w-3xl xl:max-w-6xl md:mx-auto">
+            <NavLink to="/tableau-de-bord" className="flex items-center">
+              <i className="text-3xl p-1 hover:text-[var(--color-mauve-omb)]">
+                <IoArrowUndo />
+              </i>
+            </NavLink>
+
+            <NavLink to="/edit-profil-enfant" className="flex items-center">
+              <i className="text-3xl p-1 hover:text-[var(--color-mauve-omb)]">
+                <IoCreate className="text-2xl hover:text-[var(--color-mauve-omb)]" />
+              </i>
+            </NavLink>
+          </div>
         </div>
-
         <h1 className="text-3xl text-center md:text-4xl font-bold">
           Profil enfant
         </h1>
