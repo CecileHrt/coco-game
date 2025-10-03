@@ -17,13 +17,13 @@ const useInscriptionStore = create((set) => ({
       const userConnected = await stayConnected();
 
       set((state) => ({
-        user: userConnected || state.user, // ✅ garde l’existant si null
+        user: userConnected || state.user, // garde l’existant si null
         loading: false,
         checkedAuth: true, // marquer qu’on a terminé
       }));
     } catch (err) {
       set((state) => ({
-        user: state.user, // ✅ ne pas écraser si déjà défini
+        user: state.user, // ne pas écraser si déjà défini
         error: err.message || "Erreur inconnue",
         loading: false,
         checkedAuth: true,
@@ -43,7 +43,7 @@ const useInscriptionStore = create((set) => ({
         },
         loading: false,
         error: null,
-        checkedAuth: true, // ✅ on sait qu’on a un user
+        checkedAuth: true, // on sait qu’on a un user
       });
     } catch (err) {
       set({ error: err.message || "Erreur inconnue", loading: false });

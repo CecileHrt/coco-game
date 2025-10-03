@@ -6,7 +6,7 @@ import useInscriptionStore from "./stores/useInscriptionStore";
 
 function App() {
   // LOADER
-  const data = useLoaderData(); // contient { user }
+  const data = useLoaderData(); // récupère { user } depuis authLoader
   const setUser = useInscriptionStore((state) => state.setUser);
 
   useEffect(() => {

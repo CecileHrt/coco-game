@@ -11,12 +11,12 @@ describe("NavBarJeu", () => {
       </MemoryRouter>
     );
 
-    // vérifie que le logo (texte car strong) est dans le document // i pour ignorer la cassen
+    // vérifie que le logo (texte car strong) est dans le document // i pour ignorer la casse
     expect(screen.getByText(/Coco Game/i)).toBeInTheDocument();
     // vérifie que l'image avec le alt est dans le document
     expect(screen.getByAltText(/logo de l'application/i)).toBeInTheDocument();
   });
-  it("Ouvre le menu quan don clique sur le menu burger", () => {
+  it("Ouvre le menu quand on clique sur le menu burger", () => {
     render(
       <MemoryRouter>
         <NavBarJeu />
@@ -28,6 +28,6 @@ describe("NavBarJeu", () => {
     // on clique sur le bouton burger
     fireEvent.click(burgerButton);
 
-    expect(screen.getByText(/Choisir le profil/i)).toBeInTheDocument();
+    expect(screen.getByText(/Se connecter/i)).toBeInTheDocument();
   });
 });

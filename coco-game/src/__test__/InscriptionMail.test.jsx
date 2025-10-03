@@ -14,6 +14,7 @@ describe("InscriptionMail", () => {
     // vérifie que le champ email est dans le document
     expect(screen.getByLabelText(/Email/i)).toBeInTheDocument();
   });
+
   it("Affiche une erreur si le champs mail est vide", async () => {
     render(
       <MemoryRouter>

@@ -2,10 +2,10 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 import useInscriptionStore from "../stores/useInscriptionStore";
 
 // -- -- -- -- -- -- --
+//  inscription double optin / mail
 // Inscription
 // -- -- -- -- -- -- --
 
-//  inscription double optin / mail
 //  inscription classique
 // export const signup = async (values) => {
 //   try {

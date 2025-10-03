@@ -9,6 +9,10 @@ const config = require("./database/config");
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+// CONDITION pour déployer avec Resend
+if (process.env.MODE === "production") {
+  app.set("trust proxy", 1);
+}
 
 app.use(
   cors({

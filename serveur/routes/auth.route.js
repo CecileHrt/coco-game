@@ -22,7 +22,6 @@ router.post("/creer-profil-enfant", authentification, addChildProfile);
 router.post("/connexion", loginLimiter, connexion);
 router.post("/forgotPassword", forgotPassword);
 router.post("/resetPassword", resetPassword);
-// router.post("/changePassword", changePassword);
 
 // GET
 router.get("/verifyMail/:token", verifyMail);

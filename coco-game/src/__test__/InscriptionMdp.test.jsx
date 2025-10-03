@@ -12,10 +12,10 @@ describe("InscriptionMdp", () => {
     );
 
     // vérifie que le champ mot de passe est dans le document
-    expect(screen.getByLabelText(/^Mot de passe/i)).toBeInTheDocument(); // ^ pour commencer par ("Mot de passe" et "Confirmation de mot de passe" dans le même composant)
+    expect(screen.getByLabelText(/^Mot de passe/i)).toBeInTheDocument(); // ^ pour commencer par (car "Mot de passe" et "Confirmation de mot de passe" dans le même composant)
   });
 
-  it("Affciher une erreur si les mots de passe ne correspondent pas", async () => {
+  it("Afficher une erreur si les mots de passe ne correspondent pas", async () => {
     render(
       <MemoryRouter>
         <InscriptionMdp />
@@ -30,7 +30,7 @@ describe("InscriptionMdp", () => {
 
     // simuler la saisie des mots de passe
     fireEvent.input(password, { target: { value: "password123" } });
-    // .input (objet, avecclé target comprenant une clé value)
+    // .input (objet, avec clé target comprenant une clé value)
     fireEvent.input(confirmPassword, { target: { value: "password124" } });
 
     // simuler la soumission du formulaire
@@ -50,7 +50,7 @@ describe("InscriptionMdp", () => {
       </MemoryRouter>
     );
 
-    // vérifie que le champ mot de passe est dans le document
+    // vérifie que la case rgpd est cochée
     const rgpd = screen.getByLabelText(/Données personnelles/i);
 
     expect(rgpd.checked).toEqual(false);

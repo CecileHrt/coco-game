@@ -7,7 +7,7 @@ const {
   sendForgotPasswordEmail,
   validateNewPassword,
 } = require("../mails/optinSendgrid.js");
-const TempUser = require("../models/tempUser.model.js");
+const TempUser = require("../mails/optinResend.js");
 
 const SECRET_KEY = process.env.SECRET_KEY;
 
@@ -130,7 +130,7 @@ const signupMdp = async (req, res) => {
     res.cookie("tokenUser", tokenUser, {
       httpOnly: true,
       secure: process.env.MODE === "development" ? false : true,
-      sameSite: process.env.MODE === "development" ? "Lax" : "Strict",
+      sameSite: process.env.MODE === "development" ? "Lax" : "None",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -200,7 +200,7 @@ const connexion = async (req, res) => {
     res.cookie("tokenUser", tokenUser, {
       httpOnly: true,
       secure: process.env.MODE === "development" ? false : true, // à passer à true en production avec HTTPS
-      sameSite: process.env.MODE === "development" ? "Lax" : "Strict", // autorise la traversée des url
+      sameSite: process.env.MODE === "development" ? "Lax" : "None", // autorise la traversée des url
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -287,7 +287,7 @@ const signout = async (req, res) => {
   res.clearCookie("tokenUser", {
     httpOnly: true,
     secure: process.env.MODE === "development" ? false : true,
-    sameSite: process.env.MODE === "development" ? "Lax" : "Strict",
+    sameSite: process.env.MODE === "development" ? "Lax" : "None",
   });
   res.status(200).json({ message: "Déconnexion reussie" });
 };

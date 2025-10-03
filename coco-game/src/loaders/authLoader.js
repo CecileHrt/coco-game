@@ -6,6 +6,7 @@ export async function authLoader() {
     return { user }; // retourne un objet contenant le user
   } catch (err) {
     console.error("Erreur authLoader:", err);
-    return { user: null }; // en cas d'erreur, user = null
+    // return { user: null }; // en cas d'erreur, user = null
+    return null; // en cas d'erreur, user = null = vrai false
   }
 }

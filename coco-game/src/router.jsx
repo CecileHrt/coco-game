@@ -28,11 +28,7 @@ import ChoixCoco from "./pagesEnfant/ChoixCoco";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      // <AuthProviderZustand>
-      <App />
-      // </AuthProviderZustand>
-    ),
+    element: <App />,
     errorElement: <Page404 />,
     loader: authLoader, // récupérer user avant le rendu
     children: [
