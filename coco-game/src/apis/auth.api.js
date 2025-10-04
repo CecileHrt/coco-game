@@ -1,5 +1,4 @@
 const BASE_URL = import.meta.env.VITE_BASE_URL;
-import useInscriptionStore from "../stores/useInscriptionStore";
 
 // -- -- -- -- -- -- --
 //  inscription double optin / mail

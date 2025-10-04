@@ -34,8 +34,6 @@ const useInscriptionStore = create((set) => ({
   // setUser avec gestion de loading simulée
   setUser: async (user) => {
     try {
-      // ici faire un appel API si besoin
-      // await fetch(...) etc.
       set({
         user: {
           ...user,

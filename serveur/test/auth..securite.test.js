@@ -5,7 +5,7 @@ const setupTestDB = require("./setupTestDB");
 const User = require("../models/auth.model.js");
 
 // simulation d'email
-jest.mock("../mails/optin.js", () => ({
+jest.mock("../mails/optinResend.js", () => ({
   sendConfirmationEmail: jest.fn(),
   sendAccountAlreadyExistsEmail: jest.fn(),
   sendForgotPasswordEmail: jest.fn(),
@@ -71,10 +71,11 @@ describe("Sécurité authentification", () => {
         prenom: "Maximilien",
         anniversaire: "2018-01-01",
         classe: "CP",
+        accParental: true,
       });
     expect([200, 201]).toContain(res.statusCode);
   });
-  //Nombre de tentative de connexionnpm
+  //Nombre de tentative de connexion
   it("bloque après trop de tentatives (loginLimiter) si appliqué sur /auth/connexion", async () => {
     for (let i = 0; i < 4; i++) {
       await request(app)

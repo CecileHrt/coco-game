@@ -6,8 +6,8 @@ const {
   sendAccountAlreadyExistsEmail,
   sendForgotPasswordEmail,
   validateNewPassword,
-} = require("../mails/optinSendgrid.js");
-const TempUser = require("../mails/optinResend.js");
+} = require("../mails/optinResend.js");
+const TempUser = require("../models/tempUser.model.js");
 
 const SECRET_KEY = process.env.SECRET_KEY;
 
