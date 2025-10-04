@@ -11,7 +11,8 @@ import useInscriptionStore from "../stores/useInscriptionStore";
 import { NavLink } from "react-router-dom";
 
 export default function CreationProfilEnf() {
-  const addChildProfile = useInscriptionStore((state) => state.addChildProfile);
+  // const addChildProfile = useInscriptionStore((state) => state.addChildProfile); remplacée pour le rechargement suite à l'inscription :
+  const { updateUser } = useInscriptionStore();
   const navigate = useNavigate();
 
   const defaultValues = {
@@ -63,7 +64,8 @@ export default function CreationProfilEnf() {
         toast.error("Impossible de créer le profil enfant.");
         return; // si pas de child, on arrête la fonction
       }
-      addChildProfile(child);
+      // addChildProfile(child); Ne fonctionne pas, remplacer par la mise à jour
+      updateUser(child);
       toast.success("Profil enregistré !");
       reset(defaultValues);
       // console.log("Nouvel enfant créé :", child);

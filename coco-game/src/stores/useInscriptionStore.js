@@ -49,6 +49,8 @@ const useInscriptionStore = create((set) => ({
       set({ error: err.message || "Erreur inconnue", loading: false });
     }
   },
+  //rendre la mise à jour synchrone (suite à une inscription)
+  updateUser: (newUser) => set({ user: newUser }),
 
   clearUser: () => set({ user: null }),
 
